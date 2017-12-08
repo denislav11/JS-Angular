@@ -1,0 +1,90 @@
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="col-md-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a routerLink="">Home</a>
+                    </li>
+                    <li>New account / Sign in</li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="box">
+                    <h1>New account</h1>
+
+                    <p class="lead">Not our registered customer yet?</p>
+                    <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole
+                        process will not take you more than a minute!</p>
+                    <p class="text-muted">If you have any questions, please feel free to
+                        <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                    <hr>
+                    <div *ngIf="loading" class="loader"></div>
+                    <div *ngIf="registerSuccess" class="alert alert-success">
+                        Registered successfully!
+                    </div>
+                    <div *ngIf="registerFail" class="alert alert-danger">
+                        {{errors}}
+                    </div>
+                    <form (ngSubmit)="register()" #registerForm="ngForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" required minlength="5" [(ngModel)]="model.name" name="name" #name="ngModel"
+                            />
+                        </div>
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                            <div *ngIf="name.errors.required">
+                                Name is required!
+                            </div>
+                            <div *ngIf="name.errors.minlength">
+                                Name must be at least 5 symbols long!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" id="email" required minlength="6" name="email" [(ngModel)]="model.email" #email="ngModel">
+                        </div>
+                        <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+                            <div *ngIf="email.errors.required">
+                                Email is required!
+                            </div>
+                            <div *ngIf="email.errors.minlength">
+                                Email must be at least 6 symbols long!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea class="form-control" id="address" required minlength="6" name="address" [(ngModel)]="model.address" #address="ngModel"></textarea>
+                        </div>
+                        <div *ngIf="address.invalid && 
+                        (address.touched || address.dirty)" class="alert alert-danger">
+                            <div *ngIf="address.errors.required">
+                                Address is required!
+                            </div>
+                            <div *ngIf="address.errors.minlength">
+                                Address must be at least 6 characters long!
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required minlength="6" [(ngModel)]="model.password"
+                                #password="ngModel">
+                        </div>
+                        <div *ngIf="password.invalid && (password.touched || password.dirty)" class="alert alert-danger">
+                            <div *ngIf="password.errors.required">
+                                Password is required!
+                            </div>
+                            <div *ngIf="password.errors.minlength">
+                                Password must be at least 6 characters long!
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" [disabled]="registerForm.invalid " class="btn btn-primary">
+                                <i class="fa fa-user-md"></i> Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
