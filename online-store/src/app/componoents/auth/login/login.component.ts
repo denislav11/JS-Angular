@@ -1,8 +1,6 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserLogin } from '../../../models/user-login';
-import { AuthService } from '../../../services/auth.service';
-
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
     templateUrl: './login.component.html',
@@ -12,22 +10,11 @@ export class LoginComponent {
     private model: UserLogin;
 
     constructor(
-        private service: AuthService,
-        private toastr: ToastsManager,
-        vcr: ViewContainerRef) {
+        private service: AuthService) {
         this.model = new UserLogin('', '');
-        this.toastr.setRootViewContainerRef(vcr);
-        this.showSuccess();
-    }
-
-    showSuccess() {
-        this.toastr.success('You are awesome!', 'Success!');
     }
 
     login() {
-        this.service.login(this.model)
-            .subscribe(data => {
-                console.log(data);
-            })
+        this.service.login(this.model);
     }
 }

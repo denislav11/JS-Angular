@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-
-import { AuthService } from '../../services/auth.service';
+import { components } from './index';
 
 @NgModule({
     imports: [
@@ -13,13 +10,11 @@ import { AuthService } from '../../services/auth.service';
         FormsModule
     ],
     declarations: [
-        RegisterComponent,
-        LoginComponent
+        ...components
     ],
     exports: [
-        RegisterComponent,
-        LoginComponent
+        ...components
     ],
-    providers: [AuthService]
+    providers: []
 })
 export class AuthModule { }

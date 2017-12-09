@@ -2,31 +2,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HomeModule } from './componoents/home/home.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRouterModule } from './router-module';
 import { AuthModule } from './componoents/auth/auth.module';
 import { ToastModule } from 'ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { TopComponent } from './componoents/common/top/top.component';
-import { HeaderComponent } from './componoents/common/top/header.component';
-import { FooterComponent } from './componoents/common/footer/footer.component';
+import { ServicesModule } from './services/services.module';
+
+import { routes } from './app-routing';
+import { RouterModule } from '@angular/router';
+import { CommonComponentsModule } from './componoents/common/common.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TopComponent,
-    HeaderComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRouterModule,
     AuthModule,
     HomeModule,
+    CommonComponentsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    RouterModule.forRoot(routes),
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

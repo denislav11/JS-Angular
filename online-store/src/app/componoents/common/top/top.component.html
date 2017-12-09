@@ -6,17 +6,20 @@
         </div>
         <div class="col-md-6" data-animate="fadeInDown">
             <ul class="menu">
-                <li>
+                <li *ngIf="!isLogged()">
                     <a routerLink="login">Login</a>
                 </li>
-                <li>
+                <li *ngIf="!isLogged()">
                     <a routerLink="register">Register</a>
+                </li>
+                <li *ngIf="isLogged()">
+                    <h4>{{username()}}</h4>
+                </li>
+                <li *ngIf="isLogged()">
+                    <a routerLink="logout">Logout</a>
                 </li>
                 <li>
                     <a href="contact.html">Contact</a>
-                </li>
-                <li>
-                    <a href="#">Recently viewed</a>
                 </li>
             </ul>
         </div>
