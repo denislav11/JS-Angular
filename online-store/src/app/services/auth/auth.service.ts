@@ -18,6 +18,7 @@ import { error } from 'selenium-webdriver';
 export class AuthService {
     private authToken: string;
     private username: string;
+    private role: string;
 
     constructor(
         private http: HttpClientService,
@@ -26,6 +27,7 @@ export class AuthService {
 
     register(user): void {
         user.username = user.email;
+        user.role = 'user';
 
         this.http.post(registerUrl, user, 'Basic')
             .subscribe(user => {
@@ -42,9 +44,12 @@ export class AuthService {
 
         this.http.post(loginUrl, user, 'Basic')
             .subscribe(user => {
-                console.log(user);
                 this.toastr.success('Logged in!');
                 this.saveSession(user);
+                if (user['role'] === 'admin') {
+                    this.router.navigate(['admin']);
+                    return;
+                }
                 this.router.navigate(['']);
             },
             error => {
@@ -69,17 +74,26 @@ export class AuthService {
     private saveSession(user) {
         this.authToken = user['_kmd'].authtoken;
         this.username = user['username'];
+        this.role = user['role'];
+
         localStorage.setItem('authtoken', this.authToken);
+        localStorage.setItem('role', this.role);
         localStorage.setItem('username', this.username);
     }
 
     public isLoggedIn() {
-        return this.authToken === localStorage.getItem('authtoken');
+        return localStorage.getItem('authtoken') !== (undefined || null);
     }
 
     public getUsername() {
-        if (this.isLoggedIn) {
-            return this.username;
+        return localStorage.getItem('username');
+    }
+
+    public isAdmin() {
+        let isAdmin = localStorage.getItem('role') === 'admin';
+        if (!isAdmin) {
+            this.toastr.error('Not authorized as admin!');
         }
+        return isAdmin;
     }
 }

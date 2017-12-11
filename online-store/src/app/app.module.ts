@@ -12,6 +12,8 @@ import { ServicesModule } from './services/services.module';
 import { routes } from './app-routing';
 import { RouterModule } from '@angular/router';
 import { CommonComponentsModule } from './componoents/common/common.module';
+import { AdminModule } from './componoents/admin/admin.module';
+import { GuardsModule } from './guards/guards.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CommonComponentsModule } from './componoents/common/common.module';
     BrowserModule,
     AuthModule,
     HomeModule,
+    AdminModule,
     CommonComponentsModule,
+    GuardsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
