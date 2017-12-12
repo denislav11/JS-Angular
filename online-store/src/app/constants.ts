@@ -5,3 +5,5 @@ export const appSecret = '26c885eba6664742a91989a01a87ecb9';
 export const registerUrl = `${baseUrl}user/${appKey}`;
 export const loginUrl = `${baseUrl}user/${appKey}/login`;
 export const logoutUrl = `${baseUrl}user/${appKey}/_logout`;
+
+export const categoryPost = `${baseUrl}appdata/${appKey}/categories`;

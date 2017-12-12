@@ -15,4 +15,8 @@ export class TopComponent {
     username(): string {
         return this.auth.getUsername();
     }
+
+    showTop(): boolean {
+        return !this.auth.isAdmin();
+    }
 }

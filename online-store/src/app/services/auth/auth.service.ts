@@ -12,7 +12,6 @@ import {
 import { HttpClientService } from './http-client.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
-import { error } from 'selenium-webdriver';
 
 @Injectable()
 export class AuthService {
@@ -33,9 +32,6 @@ export class AuthService {
             .subscribe(user => {
                 this.toastr.success('Registered successfully!')
                 this.login(user);
-            },
-            error => {
-                this.handleError(error);
             });
     }
 
@@ -46,14 +42,11 @@ export class AuthService {
             .subscribe(user => {
                 this.toastr.success('Logged in!');
                 this.saveSession(user);
-                if (user['role'] === 'admin') {
+                if (this.role === 'admin') {
                     this.router.navigate(['admin']);
-                    return;
+                } else {
+                    this.router.navigate(['']);
                 }
-                this.router.navigate(['']);
-            },
-            error => {
-                this.handleError(error);
             })
     }
 
@@ -62,13 +55,8 @@ export class AuthService {
             .subscribe(data => {
                 this.toastr.success('Logouted!');
                 localStorage.clear();
-                this.router.navigate(['/login']);
-            },
-            error => this.handleError(error));
-    }
-
-    private handleError(err) {
-        this.toastr.error(err.error.error + ': ' + err.error.description)
+                this.router.navigate(['login']);
+            });
     }
 
     private saveSession(user) {
@@ -90,10 +78,6 @@ export class AuthService {
     }
 
     public isAdmin() {
-        let isAdmin = localStorage.getItem('role') === 'admin';
-        if (!isAdmin) {
-            this.toastr.error('Not authorized as admin!');
-        }
-        return isAdmin;
+        return localStorage.getItem('role') === 'admin';
     }
 }

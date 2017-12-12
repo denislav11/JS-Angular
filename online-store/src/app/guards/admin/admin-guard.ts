@@ -7,12 +7,14 @@ import {
 } from "@angular/router";
 
 import { AuthService } from "../../services/auth/auth.service";
+import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
     constructor(
         private router: Router,
-        private service: AuthService) {
+        private service: AuthService,
+        private toastr: ToastsManager) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -23,6 +25,7 @@ export class AdminGuard implements CanActivate {
         if (this.service.isAdmin()) {
             return true;
         }
+        this.toastr.error('Not authorized as admin!')
         this.router.navigate(['login']);
         return false;
     }

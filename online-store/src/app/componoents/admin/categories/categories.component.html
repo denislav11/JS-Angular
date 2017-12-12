@@ -1,0 +1,10 @@
+<div class="row">
+    <admin-menu></admin-menu>
+    <button routerLink="/admin/categories/create">Add Category</button>
+    <div class="col-md-10">
+        <ul>
+            <admin-category *ngFor="let category of categories" [adminCategoryProp]="category">
+            </admin-category>
+        </ul>
+    </div>
+</div>
