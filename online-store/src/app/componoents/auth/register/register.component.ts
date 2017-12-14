@@ -3,8 +3,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { UserRegister } from '../../../models/user-register';
 
 @Component({
-    templateUrl: "./register.component.html",
-    styleUrls: ['../auth.forms.css']
+    templateUrl: "./register.component.html" 
 })
 export class RegisterComponent {
     private model: UserRegister;

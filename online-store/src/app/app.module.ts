@@ -15,6 +15,8 @@ import { CommonComponentsModule } from './componoents/common/common.module';
 import { AdminModule } from './componoents/admin/admin.module';
 import { GuardsModule } from './guards/guards.module';
 
+import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,6 +29,7 @@ import { GuardsModule } from './guards/guards.module';
     CommonComponentsModule,
     GuardsModule,
     HttpClientModule,
+    NgHttpLoaderModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(routes),

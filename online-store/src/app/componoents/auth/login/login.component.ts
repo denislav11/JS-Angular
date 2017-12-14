@@ -3,8 +3,7 @@ import { UserLogin } from '../../../models/user-login';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
-    templateUrl: './login.component.html',
-    styleUrls: ['../auth.forms.css']
+    templateUrl: './login.component.html'
 })
 export class LoginComponent {
     private model: UserLogin;

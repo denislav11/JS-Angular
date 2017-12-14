@@ -1,5 +1,8 @@
-<li class="list-group-item justify-content-between">
-    <span>{{category.title}}</span>
-    <button>Edit</button>
-    <button>Delete</button>
+<li class="list-group-item">
+    <span>
+        {{category.title}}</span>
+    <div class="text-right">
+        <button class="btn alert alert-info" (click)="edit()">Edit</button>
+        <button class="btn alert alert-danger" (click)="delete()">Delete</button>
+    </div>
 </li>

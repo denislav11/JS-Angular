@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { AdminProductService } from '../../../services/admin/admin-product.service';
+import { AdminProductTableModel } from '../../../models/admin/product/product-table-model';
+import { Router } from '@angular/router';
+
+@Component({
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.css']
+})
+export class AdminProductsComponent implements OnInit {
+    private products: AdminProductTableModel[];
+
+    constructor(
+        private productsService: AdminProductService,
+        private router: Router
+    ) { }
+
+    ngOnInit() {
+        this.getProducts();
+    }
+
+    private getProducts() {
+        this.productsService.getAllProducts()
+            .subscribe(data => {
+                this.products = data; 
+            });
+    }
+
+    private editProduct(id) {
+        this.router.navigate(['/admin/products/edit', id])
+    }
+
+    private deleteProduct(id) {
+        this.router.navigate(['/admin/products/delete', id])
+    }
+}

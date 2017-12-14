@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { appKey, appSecret } from '../../constants';
+import { appKey, appSecret } from '../constants';
 
 import { catchError } from 'rxjs/operators';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
@@ -23,6 +23,22 @@ export class HttpClientService {
         return this.http.post<T>
             (url, JSON.stringify(body),
             { headers: this.makeHeader(headerType) })
+            .pipe(
+            catchError(err => this.handleError(err))
+            );
+    }
+
+    put<T>(url: string, body: any, headerType: string) {
+        return this.http.put(url,
+            JSON.stringify(body),
+            { headers: this.makeHeader(headerType) })
+            .pipe(
+            catchError(err => this.handleError(err))
+            );
+    }
+
+    delete<T>(url: string, headerType: string) {
+        return this.http.delete<T>(url, { headers: this.makeHeader(headerType) })
             .pipe(
             catchError(err => this.handleError(err))
             );

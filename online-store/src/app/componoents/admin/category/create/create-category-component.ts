@@ -1,18 +1,29 @@
 import { Component } from '@angular/core';
-import { AdminCategory } from '../../../../models/admin-category';
-import { AdminCategoryService } from '../../../../services/admin/category/admin-category.service';
+import { AdminCategoryService } from '../../../../services/admin/admin-category.service';
+import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { Router } from '@angular/router';
+import { AdminCreateCategory } from '../../../../models/admin/category/admin-create-category';
 
 @Component({
     templateUrl: './create-category-component.html'
 })
 export class AdminCreateCategoryComponent {
-    private model: AdminCategory;
+    private model: AdminCreateCategory;
 
-    constructor(private service: AdminCategoryService) {
-        this.model = new AdminCategory('');
+    constructor(
+        private service: AdminCategoryService,
+        private toastr: ToastsManager,
+        private router: Router
+    ) {
+        this.model = new AdminCreateCategory('');
     }
 
     create() {
-        this.service.createCategory(this.model);
+        this.service.createCategory(this.model)
+            .subscribe(
+            data => {
+                this.toastr.success("Category created!");
+                this.router.navigate(['/admin/categories']);
+            });;
     }
 }

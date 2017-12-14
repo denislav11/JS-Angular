@@ -1,9 +1,14 @@
 <div class="row">
     <admin-menu></admin-menu>
-    <button routerLink="/admin/categories/create">Add Category</button>
-    <div class="col-md-10">
-        <ul>
-            <admin-category *ngFor="let category of categories" [adminCategoryProp]="category">
+    <div class="col-md-8 col-md-offset-2">
+        <br>
+        <div>
+            <button class="btn btn-lg" routerLink="/admin/categories/create">Add Category</button>
+        </div>
+        <br>
+        <ul class="list-group">
+            <admin-category *ngFor="let category of categories" [adminCategoryProp]="category" (editCategory)="editCategory($event)"
+                (deleteCategory)="deleteCategory($event)">
             </admin-category>
         </ul>
     </div>

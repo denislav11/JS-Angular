@@ -9,7 +9,7 @@ import {
     logoutUrl
 } from '../../constants';
 
-import { HttpClientService } from './http-client.service';
+import { HttpClientService } from '../http-client.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
 
