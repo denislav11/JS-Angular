@@ -1,6 +1,5 @@
 import { AdminComponent } from './home/admin.component';
 import { MenuComponent } from './menu/menu.component';
-import { TableComponent } from './table/table.component';
 import { AdminCategoriesComponent } from './categories/categories.component';
 import { AdminCategoryComponent } from './category/category.component';
 import { AdminCreateCategoryComponent } from './category/create/create-category-component';
@@ -12,11 +11,11 @@ import { AdminProductsComponent } from './products/products.component';
 import { AdminProductComponent } from './product/product.component';
 import { AdminEditProductComponent } from './product/edit/product.edit.component';
 import { AdminDeleteProductComponent } from './product/delete/product.delete.component';
+import { OrdersComponent } from './orders/orders.component';
 
 export const components = [
     AdminComponent,
     MenuComponent,
-    TableComponent,
     AdminCategoriesComponent,
     AdminCategoryComponent,
     AdminCreateCategoryComponent,
@@ -27,5 +26,7 @@ export const components = [
     AdminProductComponent,
     AdminCreateProductComponent,
     AdminEditProductComponent,
-    AdminDeleteProductComponent
+    AdminDeleteProductComponent,
+
+    OrdersComponent
 ]

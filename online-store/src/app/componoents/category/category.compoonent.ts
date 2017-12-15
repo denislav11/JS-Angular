@@ -4,6 +4,8 @@ import { CategoryService } from '../../services/category/category-service';
 import { CategoryModel } from '../../models/category/category-model';
 import { ProductModel } from '../../models/product/product-model';
 import { ProductService } from '../../services/products/product.service';
+import { BasketService } from '../../services/basket/basket.service';
+import { BasketCreateModel } from '../../models/basket/basket-create.model';
 
 @Component({
     templateUrl: './category.compoonent.html'
@@ -15,6 +17,7 @@ export class CategoryComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
+        private basketService: BasketService,
         private categoryService: CategoryService,
         private productService: ProductService
     ) { }
@@ -42,6 +45,7 @@ export class CategoryComponent implements OnInit {
         this.router.navigate(['product', id])
     }
     private buyProduct(id) {
-        console.log(id);
+        let basket = new BasketCreateModel(id)
+        this.basketService.addProduct(basket);
     }
 }

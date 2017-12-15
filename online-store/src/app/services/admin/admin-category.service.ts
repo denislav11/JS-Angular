@@ -23,7 +23,8 @@ export class AdminCategoryService {
     }
 
     editCategory(category: AdminCategoryModel): Observable<AdminCategoryModel> {
-        return this.http.put<AdminCategoryModel>(categoryUrl + '/' + category._id, category, 'Kinvey');
+        return this.http.put<AdminCategoryModel>
+            (categoryUrl + '/' + category._id, category, 'Kinvey');
     }
 
     deleteCategory(id: string): Observable<Object> {

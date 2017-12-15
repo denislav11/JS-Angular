@@ -3,7 +3,7 @@ export class UserModel {
     public email: string;
     public password: string;
     public address: string;
-    public phone: string;
+    public telephone: string;
     public products: string[];
     public _id: string;
 
@@ -14,13 +14,13 @@ export class UserModel {
         password: string,
         address: string,
         products: string[],
-        phone: string) {
+        telephone: string) {
         this._id = _id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
         this.products = products;
-        this.phone = phone
+        this.telephone = telephone
     }
 }

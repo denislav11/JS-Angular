@@ -33,27 +33,31 @@ export class CheckoutComponent implements OnInit {
         this.userService.getCurrentUser()
             .subscribe(data => {
                 this.user = data;
+
+                this.productService.getAllProducts()
+                    .subscribe(products => {
+                        for (let pr of this.user.products) {
+                            let current = products.filter(p => p._id === pr)[0];
+                            this.products.push(current);
+                            this.total += current.price;
+                        }
+                    })
             });
-        this.productService.getAllProducts()
-            .subscribe(products => {
-                for (let pr of this.user.products) {
-                    let current = products.filter(p => p._id === pr)[0];
-                    this.products.push(current);
-                    this.total += current.price;
-                }
-            })
+
     }
 
     purchase() {
+        console.log(this.user);
         let model = new OrderCreateModel(
             this.user.name,
             this.user.address,
-            this.user.phone,
+            this.user.telephone,
             this.user.email,
             this.total,
             this.comment,
             this.user.products
         )
+        console.log(model);
         this.orderService.purchase(model)
             .subscribe(data => {
                 this.basketService.clearProducts();

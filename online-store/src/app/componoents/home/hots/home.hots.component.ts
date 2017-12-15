@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './home.hots.component.html',
-    selector: 'hots',
-    styleUrls: ['./hots.component.css']
+    selector: 'hots'
 })
 export class HomeHotsComponent implements OnInit {
     private hotProducts: HotProductModel[];
