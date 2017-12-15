@@ -5,6 +5,7 @@ import { productUrl } from '../../constants';
 import { AdminCreateProductModel } from "../../models/admin/product/create-product-model";
 import { AdminProductTableModel } from "../../models/admin/product/product-table-model";
 import { map } from 'rxjs/operators';
+import { ProductModel } from "../../models/product/product-model";
 
 @Injectable()
 export class AdminProductService {
@@ -14,29 +15,8 @@ export class AdminProductService {
         return this.http.post<AdminCreateProductModel>(productUrl, product, 'Kinvey');
     }
 
-    getAllProducts(): Observable<AdminProductTableModel[]> {
-        return this.http.get<AdminProductTableModel[]>(productUrl)
-            .pipe(
-            map(data => {
-                let arr: AdminProductTableModel[] = [];
-                for (let product of data) {
-                    arr.push(new AdminProductTableModel(
-                        product._id,
-                        product.title,
-                        product.price,
-                        product.model
-                    ));
-                }
-                return arr;
-            }));
-    }
-
-    getProductById(id): Observable<AdminCreateProductModel> {
-        return this.http.get<AdminCreateProductModel>(productUrl + '/' + id);
-    }
-
-    editProduct(product: AdminCreateProductModel, id): Observable<Object> {
-        return this.http.put(productUrl + '/' + id, product, 'Kinvey');
+    editProduct(product: ProductModel): Observable<Object> {
+        return this.http.put<ProductModel>(productUrl + '/' + product._id, product, 'Kinvey');
     }
 
     deleteProduct(id: string) {

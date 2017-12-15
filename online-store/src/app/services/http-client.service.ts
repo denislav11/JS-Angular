@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { appKey, appSecret } from '../constants';
+import { appKey, appSecret, masterSecret } from '../constants';
 
 import { catchError } from 'rxjs/operators';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
@@ -50,11 +50,22 @@ export class HttpClientService {
                 'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
                 'Content-Type': 'application/json'
             })
-        } return new HttpHeaders({
-            'Authorization': `Kinvey ${localStorage.getItem('authtoken')}`,
-            'Content-Type': 'application/json'
-        })
+        } else if (type === 'Kinvey') {
+            let authToken = localStorage.getItem('authtoken');
 
+            if (authToken !== null) {
+                return new HttpHeaders({
+                    'Authorization': `Kinvey ${authToken}`,
+                    'Content-Type': 'application/json'
+                })
+            } else {
+                return new HttpHeaders({
+                    'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
+                    'Content-Type': 'application/json'
+                })
+            }
+
+        }
     }
 
     private handleError(err) {

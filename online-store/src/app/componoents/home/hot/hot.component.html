@@ -1,0 +1,11 @@
+<div class="col-md-2 product">
+    <div class="front">
+        <a (click)="details()">
+            <img src={{pr.imageUrl}} height="200" alt="" class="img-responsive">
+        </a>
+    </div>
+    <h3>
+        <a (click)="details()">{{pr.title}}</a>
+    </h3>
+    <p class="price">${{pr.price}}</p>
+</div>

@@ -1,28 +1,31 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AdminCategory } from '../../../../models/admin/category/admin-category';
+import { AdminCategoryModel } from '../../../../models/admin/category/admin-category';
 import { AdminCategoryService } from '../../../../services/admin/admin-category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { CategoryService } from '../../../../services/category/category-service';
+import { CategoryModel } from '../../../../models/category/category-model';
 
 @Component({
     templateUrl: "./edit-category-component.html"
 })
 export class AdminEditCategoryComponent implements OnInit {
-    private model: AdminCategory;
+    private model: CategoryModel;
     private id: string;
 
     constructor(
-        private service: AdminCategoryService,
+        private adminService: AdminCategoryService,
+        private categoryService: CategoryService,
         private route: ActivatedRoute,
         private router: Router,
         private toastr: ToastsManager) {
-        this.model = new AdminCategory('', '');
+        this.model = new AdminCategoryModel('', '');
     }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
-            this.service.getCategoryById(id)
+            this.categoryService.getCategoryById(id)
                 .subscribe(data => {
                     this.model = data;
                 })
@@ -30,7 +33,7 @@ export class AdminEditCategoryComponent implements OnInit {
     }
 
     edit() {
-        this.service.editCategory(this.model)
+        this.adminService.editCategory(this.model)
             .subscribe(data => {
                 this.toastr.success('Category edited successfully!');
                 this.router.navigate(['/admin/categories']);

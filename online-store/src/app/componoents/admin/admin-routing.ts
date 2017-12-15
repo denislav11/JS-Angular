@@ -1,4 +1,4 @@
-import { AdminGuard } from "../../guards/admin/admin-guard"; import { AdminComponent } from "./home/admin.component";
+import { AdminGuard } from "../../guards/admin/admin.guard"; import { AdminComponent } from "./home/admin.component";
 import { AdminCategoriesComponent } from "./categories/categories.component";
 import { AdminCreateCategoryComponent } from "./category/create/create-category-component";
 

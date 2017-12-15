@@ -12,12 +12,14 @@ import {
 import { HttpClientService } from '../http-client.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
+import { UserModel } from '../../models/user-model';
 
 @Injectable()
 export class AuthService {
     private authToken: string;
     private username: string;
     private role: string;
+    private id: string;
 
     constructor(
         private http: HttpClientService,
@@ -59,25 +61,39 @@ export class AuthService {
             });
     }
 
+    getCurrentUser(): Observable<UserModel> {
+        if (this.isLoggedIn()) {
+            return this.http.get<UserModel>(registerUrl + '/' + this.getUserId());
+        }
+    }
+
     private saveSession(user) {
         this.authToken = user['_kmd'].authtoken;
         this.username = user['username'];
         this.role = user['role'];
+        this.id = user._id;
 
         localStorage.setItem('authtoken', this.authToken);
+        localStorage.setItem('userId', this.id);
         localStorage.setItem('role', this.role);
         localStorage.setItem('username', this.username);
     }
 
-    public isLoggedIn() {
-        return localStorage.getItem('authtoken') !== (undefined || null);
+    public isLoggedIn(): boolean {
+        return localStorage.getItem('authtoken') === this.authToken;
     }
 
-    public getUsername() {
+    public getUsername(): string {
         return localStorage.getItem('username');
     }
 
-    public isAdmin() {
-        return localStorage.getItem('role') === 'admin';
+    public isAdmin(): boolean {
+        return localStorage.getItem('role') === this.role && (this.role === 'admin');
+    }
+
+    public getUserId(): string {
+        if (this.isLoggedIn()) {
+            return this.id;
+        }
     }
 }

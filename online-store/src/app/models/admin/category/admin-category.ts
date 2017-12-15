@@ -1,4 +1,4 @@
-export class AdminCategory {
+export class AdminCategoryModel {
     public title: string;
     public _id: string;
 

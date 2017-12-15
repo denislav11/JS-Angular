@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminProductService } from '../../../services/admin/admin-product.service';
 import { AdminProductTableModel } from '../../../models/admin/product/product-table-model';
 import { Router } from '@angular/router';
+import { ProductService } from '../../../services/products/product.service';
 
 @Component({
     templateUrl: './products.component.html',
@@ -11,7 +11,7 @@ export class AdminProductsComponent implements OnInit {
     private products: AdminProductTableModel[];
 
     constructor(
-        private productsService: AdminProductService,
+        private productsService: ProductService,
         private router: Router
     ) { }
 

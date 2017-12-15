@@ -1,0 +1,22 @@
+<div id="all">
+
+    <div id="content">
+        <div class="container">
+
+            <div class="col-md-12">
+
+                <div class="box">
+                    <h1>{{category?.title}}</h1>
+                </div>
+                {{products|json}}
+                <div class="row products">
+                    <category-product *ngFor="let pr of products"
+                    [productProp]="pr"
+                    (getProductDetails)="getProductDetails($event)"
+                    (buyProduct)="buyProduct($event)"> 
+                    </category-product>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

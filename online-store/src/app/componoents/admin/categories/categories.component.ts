@@ -4,17 +4,18 @@ import { AdminCategoryService } from '../../../services/admin/admin-category.ser
 import { HttpClient } from '@angular/common/http';
 
 import { categoryUrl } from '../../../constants';
-import { AdminCategory } from '../../../models/admin/category/admin-category';
 import { Router } from '@angular/router';
+import { CategoryModel } from '../../../models/category/category-model';
+import { CategoryService } from '../../../services/category/category-service';
 
 @Component({
     templateUrl: './categories.component.html'
 })
 export class AdminCategoriesComponent implements OnInit {
-    private categories: AdminCategory[];
+    private categories: CategoryModel[];
 
     constructor(
-        private service: AdminCategoryService,
+        private service: CategoryService,
         private router: Router) {
     }
 

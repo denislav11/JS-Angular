@@ -16,6 +16,9 @@ import { AdminModule } from './componoents/admin/admin.module';
 import { GuardsModule } from './guards/guards.module';
 
 import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
+import { ProductModule } from './componoents/product/product.module';
+import { CheckoutModule } from './componoents/checkout/checkout.module';
+import { CategoryModule } from './componoents/category/category.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,9 @@ import { NgHttpLoaderModule } from 'ng-http-loader/ng-http-loader.module';
     BrowserModule,
     AuthModule,
     HomeModule,
+    ProductModule,
+    CheckoutModule,
+    CategoryModule,
     AdminModule,
     CommonComponentsModule,
     GuardsModule,
