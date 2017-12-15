@@ -32,6 +32,7 @@ export class ProductComponent implements OnInit {
     private isLogged() {
         return this.authService.isLoggedIn();
     }
+    
     orderProduct() {
         let basket = new BasketCreateModel(this.product._id);
         this.basketService.addProduct(basket); 
