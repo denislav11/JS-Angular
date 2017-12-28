@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { UserRegister } from '../../../models/user-register';
+import { UserRegister } from '../../../models/user/user-register';
 
 @Component({
     templateUrl: "./register.component.html"

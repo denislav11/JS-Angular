@@ -22,7 +22,11 @@ export class HttpClientService {
     post<T>(url: string, body: any, headerType: string) {
         return this.http.post<T>
             (url, JSON.stringify(body),
-            { headers: this.makeHeader(headerType) })
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
             .pipe(
             catchError(err => this.handleError(err))
             );
@@ -69,7 +73,14 @@ export class HttpClientService {
     }
 
     private handleError(err) {
-        this.toastr.error(err.error.error + ': ' + err.error.description)
-        return Observable.throw(new Error(err.error.description));
+        if (err.error.messages) {
+            for (let er of err.error.messages) {
+                this.toastr.error(er);
+            }
+        } else {
+            console.log(err);
+            this.toastr.error(err.error.message);
+        }
+        return Observable.throw(new Error(err.error.message));
     }
 }

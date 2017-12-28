@@ -34,16 +34,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="telephone">Telephone</label>
-                            <input type="text" class="form-control" id="telephone" required minlength="5" [(ngModel)]="model.telephone" name="telephone"
-                                #telephone="ngModel" />
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" id="phone" required minlength="10" [(ngModel)]="model.phone" name="phone" #phone="ngModel"
+                            />
                         </div>
-                        <div *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)" class="alert alert-danger">
-                            <div *ngIf="telephone.errors.required">
-                                Telephone is required!
+                        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger">
+                            <div *ngIf="phone.errors.required">
+                                Phone is required!
                             </div>
-                            <div *ngIf="telephone.errors.minlength">
-                                Telephone must be at least 5 symbols long!
+                            <div *ngIf="phone.errors.minlength">
+                                Phone must be at least 10 symbols long!
                             </div>
                         </div>
                         <div class="form-group">

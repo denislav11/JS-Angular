@@ -17,8 +17,8 @@ import { UserModel } from '../../models/user-model';
 @Injectable()
 export class AuthService {
     private authToken: string;
-    private username: string;
-    private role: string;
+    private email: string;
+    private roles: string[] = [];
     private id: string;
 
     constructor(
@@ -27,24 +27,20 @@ export class AuthService {
         private router: Router) { }
 
     register(user): void {
-        user.username = user.email;
-        user.role = 'user';
-
         this.http.post(registerUrl, user, 'Basic')
-            .subscribe(user => {
-                this.toastr.success('Registered successfully!')
+            .subscribe(res => {
+                this.toastr.success(res.message);
                 this.login(user);
             });
     }
 
     login(user): void {
-        user.username = user.email;
-
         this.http.post(loginUrl, user, 'Basic')
-            .subscribe(user => {
-                this.toastr.success('Logged in!');
-                this.saveSession(user);
-                if (this.role === 'admin') {
+            .subscribe(res => {
+                this.toastr.success(res.message);
+                this.saveSession(res);
+
+                if (this.isAdmin()) {
                     this.router.navigate(['admin']);
                 } else {
                     this.router.navigate(['']);
@@ -54,10 +50,10 @@ export class AuthService {
 
     logout(): void {
         this.http.post(logoutUrl, {}, 'Kinvey')
-            .subscribe(data => {
-                this.toastr.success('Logouted!');
+            .subscribe(res => {
+                this.toastr.success(res.message);
                 localStorage.clear();
-                this.router.navigate(['login']);
+                this.router.navigate(['']);
             });
     }
 
@@ -67,16 +63,16 @@ export class AuthService {
         }
     }
 
-    private saveSession(user) {
-        this.authToken = user['_kmd'].authtoken;
-        this.username = user['username'];
-        this.role = user['role'];
+    private saveSession(res) {
+        let user = res.user;
+
+        this.authToken = res.token;
+        this.email = user['email'];
+        this.roles = user['roles'];
         this.id = user._id;
 
         localStorage.setItem('authtoken', this.authToken);
-        localStorage.setItem('userId', this.id);
-        localStorage.setItem('role', this.role);
-        localStorage.setItem('username', this.username);
+        localStorage.setItem('email', this.email);
     }
 
     public isLoggedIn(): boolean {
@@ -84,11 +80,11 @@ export class AuthService {
     }
 
     public getUsername(): string {
-        return localStorage.getItem('username');
+        return this.email;
     }
 
     public isAdmin(): boolean {
-        return localStorage.getItem('role') === this.role && (this.role === 'admin');
+        return this.roles.includes('Admin');
     }
 
     public getUserId(): string {

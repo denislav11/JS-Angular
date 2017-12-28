@@ -3,20 +3,18 @@ export class UserRegister {
     private email: string;
     private password: string;
     private address: string;
-    public telephone: string;
-    private products: string[];
+    public phone: string;
 
     constructor(
         name: string,
         email: string,
         password: string,
         address: string,
-        telephone: string) {
+        phone: string) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.address = address;
-        this.telephone = telephone;
-        this.products = [];
+        this.phone = phone;
     }
 }

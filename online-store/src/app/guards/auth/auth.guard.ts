@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
         if (this.authService.isLoggedIn()) {
             return true;
         }
-        this.toastr.error('You must be authorized!')
+        this.toastr.error('Please log in!')
         this.router.navigate(["/login"]);
         return false;
     }
