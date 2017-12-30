@@ -12,15 +12,15 @@ export class AdminProductService {
     constructor(private http: HttpClientService) { }
 
     createProduct(product: AdminCreateProductModel): Observable<Object> {
-        return this.http.post<AdminCreateProductModel>(productUrl, product, 'Kinvey');
+        return this.http.post<AdminCreateProductModel>(productUrl, product);
     }
 
     editProduct(product: ProductModel): Observable<Object> {
-        return this.http.put<ProductModel>(productUrl + '/' + product._id, product, 'Kinvey');
+        return this.http.put<ProductModel>(productUrl + '/' + product._id, product);
     }
 
     deleteProduct(id: string) {
         console.log(productUrl + '/' + id);
-        return this.http.delete(productUrl + '/' + id, 'Kinvey');
+        return this.http.delete(productUrl + '/' + id);
     }
 }

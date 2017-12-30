@@ -25,7 +25,7 @@ export class BasketService {
                 this.currentUser = user;
                 this.currentUser.products.push(basket.productId);
 
-                return this.http.put(registerUrl + '/' + user._id, this.currentUser, 'Kinvey')
+                return this.http.put(registerUrl + '/' + user._id, this.currentUser)
                     .subscribe(user => {
                         this.toastr.success('Product added to basket!')
                     });
@@ -40,7 +40,7 @@ export class BasketService {
 
                 this.http.put(registerUrl + '/' +
                     this.userService.getUserId(),
-                    this.currentUser, 'Kinvey').subscribe(data => {
+                    this.currentUser).subscribe(data => {
                         this.toastr.success('Your order has been processed');
                         this.router.navigate(['']);
                     });

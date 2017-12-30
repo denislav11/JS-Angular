@@ -7,6 +7,6 @@ export const registerUrl = `${baseUrl}register`;
 export const loginUrl = `${baseUrl}login`;
 export const logoutUrl = `${baseUrl}logout`;
 
-export const categoryUrl = `${baseUrl}appdata/${appKey}/categories`;
+export const categoryUrl = `${baseUrl}category`;
 export const productUrl = `${baseUrl}appdata/${appKey}/products`;
 export const orderUrl = `${baseUrl}appdata/${appKey}/orders`;

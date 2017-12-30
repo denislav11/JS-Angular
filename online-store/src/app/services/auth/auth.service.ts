@@ -23,43 +23,45 @@ export class AuthService {
 
     constructor(
         private http: HttpClientService,
-        private toastr: ToastsManager,
         private router: Router) { }
 
     register(user): void {
-        this.http.post(registerUrl, user, 'Basic')
+        this.http.post(registerUrl, user)
             .subscribe(res => {
-                this.toastr.success(res.message);
-                this.login(user);
+                this.loginAction(res);
             });
     }
 
     login(user): void {
-        this.http.post(loginUrl, user, 'Basic')
+        this.http.post(loginUrl, user)
             .subscribe(res => {
-                this.toastr.success(res.message);
-                this.saveSession(res);
-
-                if (this.isAdmin()) {
-                    this.router.navigate(['admin']);
-                } else {
-                    this.router.navigate(['']);
-                }
+                this.loginAction(res);
             })
     }
 
     logout(): void {
-        this.http.post(logoutUrl, {}, 'Kinvey')
+        this.http.post(logoutUrl, {})
             .subscribe(res => {
-                this.toastr.success(res.message);
                 localStorage.clear();
                 this.router.navigate(['']);
             });
     }
 
+    private loginAction(res) {
+        this.saveSession(res);
+
+        if (this.isAdmin()) {
+            this.router.navigate(['admin']);
+        } else {
+            this.router.navigate(['']);
+        }
+    }
+
     getCurrentUser(): Observable<UserModel> {
         if (this.isLoggedIn()) {
-            return this.http.get<UserModel>(registerUrl + '/' + this.getUserId());
+            return this.http.get<UserModel>(registerUrl +
+                '/' +
+                this.getUserId());
         }
     }
 

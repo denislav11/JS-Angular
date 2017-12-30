@@ -19,15 +19,15 @@ export class AdminCategoryService {
         private router: Router) { }
 
     createCategory(categoryBody: AdminCreateCategory): Observable<Object> {
-        return this.http.post<AdminCreateCategory>(categoryUrl, categoryBody, 'Kinvey');
+        return this.http.post<AdminCreateCategory>(categoryUrl, categoryBody);
     }
 
     editCategory(category: AdminCategoryModel): Observable<AdminCategoryModel> {
         return this.http.put<AdminCategoryModel>
-            (categoryUrl + '/' + category._id, category, 'Kinvey');
+            (categoryUrl + '/' + category._id, category);
     }
 
     deleteCategory(id: string): Observable<Object> {
-        return this.http.delete(categoryUrl + '/' + id, 'Kinvey');
+        return this.http.delete(categoryUrl + '/' + id);
     }
 }

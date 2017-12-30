@@ -20,9 +20,7 @@ export class AdminCreateCategoryComponent {
 
     create() {
         this.service.createCategory(this.model)
-            .subscribe(
-            data => {
-                this.toastr.success("Category created!");
+            .subscribe(res => {
                 this.router.navigate(['/admin/categories']);
             });;
     }

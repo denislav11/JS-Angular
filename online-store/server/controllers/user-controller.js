@@ -18,10 +18,19 @@ module.exports = {
                 phone: reqUser.phone,
                 roles: ['user']
             });
-            return res.status(200).json({
-                success: true,
-                message: "Registered successfully!",
-                user: user
+
+            req.logIn(user, (err, userData) => {
+                if (err) {
+                    errorHandler(err);
+                } else {
+                    let token = uid(16);
+                    return res.status(200).json({
+                        success: true,
+                        message: 'Logged in successfully!',
+                        user,
+                        token
+                    });
+                }
             });
         } catch (e) {
             let messages = [];

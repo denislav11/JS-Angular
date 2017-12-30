@@ -12,14 +12,14 @@ export class CategoryService {
 
     getAllCategories(): Observable<CategoryModel[]> {
         return this.http.get<CategoryModel[]>(categoryUrl)
-            .pipe(
-            map(categories => {
-                let arr: CategoryModel[] = [];
-                for (let cat of categories) {
-                    arr.push(new CategoryModel(cat.title, cat._id));
-                }
-                return arr;
-            }))
+            // .pipe(
+            // map(categories => {
+            //     let arr: CategoryModel[] = [];
+            //     for (let cat of categories) {
+            //         arr.push(new CategoryModel(cat.title, cat._id));
+            //     }
+            //     return arr;
+            // }))
     }
 
     getCategoryById(id: string): Observable<CategoryModel> {

@@ -17,7 +17,7 @@ export class OrderService {
     ) { }
 
     purchase(order: OrderCreateModel): Observable<OrderCreateModel> {
-        return this.http.post<OrderCreateModel>(orderUrl, order, 'Kinvey');
+        return this.http.post<OrderCreateModel>(orderUrl, order);
     }
 
     getAllOders(): Observable<OrderAdminTableModel[]> {
