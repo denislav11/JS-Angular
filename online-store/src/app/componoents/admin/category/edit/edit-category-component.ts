@@ -4,7 +4,7 @@ import { AdminCategoryService } from '../../../../services/admin/admin-category.
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { CategoryService } from '../../../../services/category/category-service';
-import { CategoryModel } from '../../../../models/category/category-model';
+import { CategoryModel } from '../../../../models/category/category.model';
 
 @Component({
     templateUrl: "./edit-category-component.html"
@@ -19,7 +19,7 @@ export class AdminEditCategoryComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private toastr: ToastsManager) {
-        this.model = new AdminCategoryModel('', '');
+        this.model = new CategoryModel('', '');
     }
 
     ngOnInit() {

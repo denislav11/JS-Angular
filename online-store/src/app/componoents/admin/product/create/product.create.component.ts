@@ -6,7 +6,7 @@ import { AdminCreateCategory } from "../../../../models/admin/category/admin-cre
 import { AdminProductService } from "../../../../services/admin/admin-product.service";
 import { ToastsManager } from "ng2-toastr/src/toast-manager";
 import { Router } from "@angular/router";
-import { CategoryModel } from "../../../../models/category/category-model";
+import { CategoryModel } from "../../../../models/category/category.model";
 import { CategoryService } from "../../../../services/category/category-service";
 
 @Component({

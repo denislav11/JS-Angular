@@ -10,6 +10,7 @@ import { AdminCategoryModel } from "../../models/admin/category/admin-category";
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AdminCreateCategory } from "../../models/admin/category/admin-create-category";
+import { CategoryModel } from "../../models/category/category.model";
 
 @Injectable()
 export class AdminCategoryService {
@@ -22,9 +23,9 @@ export class AdminCategoryService {
         return this.http.post<AdminCreateCategory>(categoryUrl, categoryBody);
     }
 
-    editCategory(category: AdminCategoryModel): Observable<AdminCategoryModel> {
-        return this.http.put<AdminCategoryModel>
-            (categoryUrl + '/' + category._id, category);
+    editCategory(category: CategoryModel): Observable<CategoryModel> {
+        return this.http.put<CategoryModel>
+            (categoryUrl + '/' + category.id, category);
     }
 
     deleteCategory(id: string): Observable<Object> {

@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { categoryUrl } from '../../../constants';
 import { Router } from '@angular/router';
-import { CategoryModel } from '../../../models/category/category-model';
+import { CategoryModel } from '../../../models/category/category.model';
 import { CategoryService } from '../../../services/category/category-service';
 
 @Component({

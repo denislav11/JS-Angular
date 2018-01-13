@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../../../services/products/product.service";
 import { ProductModel } from "../../../../models/product/product-model";
 import { CategoryService } from "../../../../services/category/category-service";
-import { CategoryModel } from "../../../../models/category/category-model";
+import { CategoryModel } from "../../../../models/category/category.model";
 
 @Component({
     templateUrl: './product.edit.component.html'

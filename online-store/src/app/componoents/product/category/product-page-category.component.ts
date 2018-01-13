@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CategoryModel } from '../../../models/category/category-model';
+import { CategoryModel } from '../../../models/category/category.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,6 @@ export class ProductPageCategory {
     @Output() categoryGetDetails = new EventEmitter<string>();
 
     categoryDetails() {
-        this.categoryGetDetails.emit(this.category._id);
+        this.categoryGetDetails.emit(this.category.id);
     }
 }
