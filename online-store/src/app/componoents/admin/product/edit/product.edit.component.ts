@@ -1,15 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { AdminCreateProductModel } from "../../../../models/admin/product/create-product-model";
-import { AdminCategoryService } from "../../../../services/admin/admin-category.service";
-import { AdminCategoryModel } from "../../../../models/admin/category/admin-category";
-import { AdminCreateCategory } from "../../../../models/admin/category/admin-create-category";
-import { AdminProductService } from "../../../../services/admin/admin-product.service";
+import { CreateProductModel } from "../../../../models/create-product-model";
+import { CategoryService } from "../../../../services/category.service";
 import { ToastsManager } from "ng2-toastr/src/toast-manager";
 import { Router, ActivatedRoute } from "@angular/router";
-import { ProductService } from "../../../../services/products/product.service";
+import { ProductService } from "../../../../services/product.service";
 import { ProductModel } from "../../../../models/product/product-model";
-import { CategoryService } from "../../../../services/category/category-service";
 import { CategoryModel } from "../../../../models/category/category.model";
+import { CreateCategoryModel } from "../../../../models/category/create-category.model";
 
 @Component({
     templateUrl: './product.edit.component.html'
@@ -19,8 +16,6 @@ export class AdminEditProductComponent implements OnInit {
     private categories: CategoryModel[];
 
     constructor(
-        private adminCategoryService: AdminCategoryService,
-        private adminService: AdminProductService,
         private categoryService: CategoryService,
         private productsService: ProductService,
         private toastr: ToastsManager,
@@ -45,7 +40,7 @@ export class AdminEditProductComponent implements OnInit {
     }
 
     edit() {
-        this.adminService.editProduct(this.productModel)
+        this.productsService.editProduct(this.productModel)
             .subscribe(data => {
                 this.toastr.success("Product edited successfully!");
                 this.router.navigate(['/admin/products']);

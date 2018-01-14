@@ -4,7 +4,7 @@ import { BasketCreateModel } from "../../models/basket/basket-create.model";
 import { registerUrl } from "../../constants";
 import { UserModel } from "../../models/user-model";
 import { Observable } from "rxjs/Observable";
-import { AuthService } from "../auth/auth.service";
+import { AuthService } from "../auth.service";
 import { Router } from "@angular/router";
 import { ToastsManager } from "ng2-toastr/src/toast-manager";
 

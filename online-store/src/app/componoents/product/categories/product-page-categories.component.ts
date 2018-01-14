@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from '../../../models/category/category.model';
-import { CategoryService } from '../../../services/category/category-service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
     templateUrl: './product-page-categories.component.html',

@@ -11,6 +11,6 @@ export class HeaderPageCategory {
     @Output() categoryGetDetails = new EventEmitter<string>();
 
     categoryDetails() {
-        this.categoryGetDetails.emit(this.category.id);
+        this.categoryGetDetails.emit(this.category._id);
     }
 }

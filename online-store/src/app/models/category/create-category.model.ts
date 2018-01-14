@@ -1,4 +1,4 @@
-export class AdminCreateCategory {
+export class CreateCategoryModel {
     public title: string;
 
     constructor(title: string) {

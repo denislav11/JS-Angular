@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ProductService } from "../../services/products/product.service";
+import { ProductService } from "../../services/product.service";
 import { ProductModel } from "../../models/product/product-model";
-import { AuthService } from "../../services/auth/auth.service";
+import { AuthService } from "../../services/auth.service";
 import { BasketCreateModel } from "../../models/basket/basket-create.model";
 import { BasketService } from "../../services/basket/basket.service";
 

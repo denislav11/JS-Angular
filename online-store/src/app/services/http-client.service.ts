@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { appKey, appSecret, masterSecret } from '../constants';
-
 import { catchError, map } from 'rxjs/operators';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
@@ -15,8 +13,7 @@ export class HttpClientService {
     ) { }
 
     get<T>(url: string) {
-        return this.http.get<T>(url,
-            { headers: { 'Content-Type': 'application/json' } });
+        return this.http.get<T>(url, { headers: { 'Content-Type': 'application/json' } });
     }
 
     post<T>(url: string, body: any) {
@@ -28,31 +25,25 @@ export class HttpClientService {
                 }
             })
             .pipe(
-            map(res => this.handleSuccess(res)),
-            catchError(err => this.handleError(err))
-            );
+            map(res => {
+                this.toastr.success(res['message']);
+                return res;
+            }),
+            catchError(err => this.handleError(err)));
     }
 
     put<T>(url: string, body: any) {
         return this.http.put(url,
             JSON.stringify(body),
-            {
-                headers:
-                    { 'Content-Type': 'application/json' }
-            })
+            { headers: {} })
             .pipe(
-            map(res => this.handleSuccess(res)),
             catchError(err => this.handleError(err))
             );
     }
 
     delete<T>(url: string) {
-        return this.http.delete<T>(url, {
-            headers:
-                { 'Content-Type': 'application/json' }
-        })
+        return this.http.delete<T>(url, { headers: {} })
             .pipe(
-            map(res => this.handleSuccess(res)),
             catchError(err => this.handleError(err))
             );
     }
@@ -67,10 +58,5 @@ export class HttpClientService {
             this.toastr.error(err.error.message);
         }
         return Observable.throw(new Error(err.error.message));
-    }
-
-    private handleSuccess(res) {
-        this.toastr.success(res['message']);
-        return res;
     }
 }

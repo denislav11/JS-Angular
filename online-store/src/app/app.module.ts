@@ -20,14 +20,6 @@ import { ProductModule } from './componoents/product/product.module';
 import { CheckoutModule } from './componoents/checkout/checkout.module';
 import { CategoryModule } from './componoents/category/category.module';
 
-import { StoreModule } from '@ngrx/store';
-import { combineRootReducers } from './core/store/reducers/index';
-import { EffectsModule } from '@ngrx/effects';
-import { CategoriesEffects } from './core/store/effects/categories.effects';
-
-import 'rxjs';
-
-
 @NgModule({
   declarations: [
     AppComponent
@@ -47,13 +39,7 @@ import 'rxjs';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     RouterModule.forRoot(routes),
-    ServicesModule,
-    StoreModule.forRoot({
-      combineRootReducers
-    }),
-    EffectsModule.forRoot([
-      CategoriesEffects
-    ])
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

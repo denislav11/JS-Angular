@@ -1,8 +1,8 @@
-export class AdminCreateProductModel {
+export class CreateProductModel {
     public title: string;
     public price: number;
     public description: string;
-    public categoryId: string;
+    public category: string;
     public model: string;
     public imageUrl: string;
 
@@ -10,14 +10,14 @@ export class AdminCreateProductModel {
         title: string,
         price: number,
         description: string,
-        categoryId: string,
+        category: string,
         model: string,
         imageUrl: string
     ) {
         this.title = title;
         this.price = price;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category = category;
         this.model = model;
         this.imageUrl = imageUrl;
     }

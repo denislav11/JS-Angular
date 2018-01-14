@@ -5,7 +5,7 @@ import {
     ActivatedRouteSnapshot,
     RouterStateSnapshot
 } from "@angular/router";
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 
 @Injectable()

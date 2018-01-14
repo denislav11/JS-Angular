@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { AdminProductService } from '../../../../services/admin/admin-product.service';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
     template: ''
 })
 export class AdminDeleteProductComponent implements OnInit {
     constructor(
-        private service: AdminProductService,
+        private service: ProductService,
         private toastr: ToastsManager,
         private router: Router,
         private route: ActivatedRoute

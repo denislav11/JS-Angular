@@ -3,16 +3,14 @@ import { Observable } from 'rxjs';
 
 import {
     baseUrl,
-    appKey,
     registerUrl,
     loginUrl,
     logoutUrl
-} from '../../constants';
+} from '../constants';
 
-import { HttpClientService } from '../http-client.service';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { HttpClientService } from './http-client.service';
 import { Router } from '@angular/router';
-import { UserModel } from '../../models/user-model';
+import { UserModel } from '../models/user-model';
 
 @Injectable()
 export class AuthService {
@@ -28,14 +26,20 @@ export class AuthService {
     register(user): void {
         this.http.post(registerUrl, user)
             .subscribe(res => {
-                this.loginAction(res);
+                this.login(user);
             });
     }
 
     login(user): void {
         this.http.post(loginUrl, user)
             .subscribe(res => {
-                this.loginAction(res);
+                this.saveSession(res);
+
+                if (this.isAdmin()) {
+                    this.router.navigate(['admin']);
+                } else {
+                    this.router.navigate(['']);
+                }
             })
     }
 
@@ -47,21 +51,9 @@ export class AuthService {
             });
     }
 
-    private loginAction(res) {
-        this.saveSession(res);
-
-        if (this.isAdmin()) {
-            this.router.navigate(['admin']);
-        } else {
-            this.router.navigate(['']);
-        }
-    }
-
     getCurrentUser(): Observable<UserModel> {
         if (this.isLoggedIn()) {
-            return this.http.get<UserModel>(registerUrl +
-                '/' +
-                this.getUserId());
+            return this.http.get<UserModel>(registerUrl + '/' + this.getUserId());
         }
     }
 

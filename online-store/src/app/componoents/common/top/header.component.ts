@@ -1,48 +1,33 @@
-import { Component } from '@angular/core';
-import { BaseComponent } from '../../base.component';
-
-import { AuthService } from '../../../services/auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth.service';
 import { BasketService } from '../../../services/basket/basket.service';
-import { CategoryService } from '../../../services/category/category-service';
-
-import { Router } from '@angular/router';
-
-import { selectCategory } from '../../../core/store/reducers/index';
-import { Store } from '@ngrx/store';
-
-import { RootState } from '../../../core/store/state/root-state';
-import { CategoriesAction } from '../../../core/store/actions/categories.action';
+import { CategoryService } from '../../../services/category.service';
 import { CategoryModel } from '../../../models/category/category.model';
-
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: './header.component.html',
     selector: 'header'
 })
-export class HeaderComponent extends BaseComponent {
+export class HeaderComponent implements OnInit {
     private LOGO = '../../../../assets/img/logo.png';
     private LOGO_SMALL = '../../../../assets/img/logo-small.png';
-
     private categories: CategoryModel[];
 
     constructor(
         private auth: AuthService,
         private router: Router,
-        private categoryService: CategoryService,
-        private store$: Store<RootState>) {
-
-        super();
-
-        this.store$.select(selectCategory)
-            .subscribe(categories => {
-                console.log(categories);
-            })
-    }
-
-
+        private categoryService: CategoryService) { }
 
     showHeader(): boolean {
         return !this.auth.isAdmin();
+    }
+
+    ngOnInit() {
+        this.categoryService.getAllCategories()
+            .subscribe(data => {
+                this.categories = data;
+            })
     }
 
     private categoryGetDetails(id) {
