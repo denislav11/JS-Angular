@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategoryModel } from '../../../../models/category/category-model';
+import { CategoryModel } from '../../../../models/category/category.model';
 
 @Component({
     templateUrl: './header-category.component.html',

@@ -97,7 +97,7 @@
                         required
                         minlength="6"
                         name="imageUrl"
-                        [(ngModel)]="productModel.imageUrl"
+                        [(ngModel)]="productModel.image"
                         #imageUrl="ngModel">
                 </div>
                 <div *ngIf="imageUrl.invalid && (imageUrl.touched || imageUrl.dirty)"

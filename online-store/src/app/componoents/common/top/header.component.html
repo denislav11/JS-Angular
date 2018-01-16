@@ -7,8 +7,7 @@
                 <span class="sr-only">Obaju - go to homepage</span>
             </a>
 
-        </div>
-        <!--/.navbar-header -->
+        </div> 
 
         <div class="navbar-collapse collapse" id="navigation">
 
@@ -21,7 +20,8 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <header-category *ngFor="let category of categories"
+                        <header-category 
+                        *ngFor="let category of categories"
                         [categoryProp]="category"
                         (categoryGetDetails)="categoryGetDetails($event)">
                         </header-category>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminCategoryService } from '../../../../services/admin/admin-category.service';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
+import { CategoryService } from '../../../../services/category.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,8 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdminDeleteCategoryComponent implements OnInit {
     constructor(
-        private service: AdminCategoryService,
-        private toastr: ToastsManager,
+        private service: CategoryService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -21,7 +19,6 @@ export class AdminDeleteCategoryComponent implements OnInit {
 
             this.service.deleteCategory(id)
                 .subscribe(data => {
-                    this.toastr.success('Category deleted successfullt!');
                     this.router.navigate(['/admin/categories']);
                 });
         })

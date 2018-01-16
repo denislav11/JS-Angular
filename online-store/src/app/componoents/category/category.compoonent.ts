@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../../services/category/category-service';
-import { CategoryModel } from '../../models/category/category-model';
+import { CategoryService } from '../../services/category.service';
+import { CategoryModel } from '../../models/category/category.model';
 import { ProductModel } from '../../models/product/product-model';
-import { ProductService } from '../../services/products/product.service';
-import { BasketService } from '../../services/basket/basket.service';
+import { ProductService } from '../../services/product.service';
+import { BasketService } from '../../services/basket.service';
 import { BasketCreateModel } from '../../models/basket/basket-create.model';
 
 @Component({
@@ -26,12 +26,12 @@ export class CategoryComponent implements OnInit {
         this.route.params.subscribe(params => {
             let id = params['id'];
             this.categoryService.getCategoryById(id)
-                .subscribe(data => {
-                    this.category = data;
+                .subscribe(res => {
+                    this.category = res;
                     this.productService.getAllProducts()
                         .subscribe(data => {
                             for (let product of data) {
-                                if (product.categoryId === id) {
+                                if (product.category === id) {
                                     this.products.push(product);
                                 }
                             }

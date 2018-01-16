@@ -1,12 +1,12 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { AdminCategoryModel } from '../../../models/admin/category/admin-category';
+import { CategoryModel } from '../../../models/category/category.model';
 
 @Component({
     templateUrl: './category.component.html',
     selector: 'admin-category'
 })
 export class AdminCategoryComponent {
-    @Input('adminCategoryProp') category: AdminCategoryModel;
+    @Input('adminCategoryProp') category: CategoryModel;
     @Output() editCategory = new EventEmitter<string>();
     @Output() deleteCategory = new EventEmitter<string>();
 

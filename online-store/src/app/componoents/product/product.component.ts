@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ProductService } from "../../services/products/product.service";
+import { ProductService } from "../../services/product.service";
 import { ProductModel } from "../../models/product/product-model";
-import { AuthService } from "../../services/auth/auth.service";
+import { AuthService } from "../../services/auth.service";
 import { BasketCreateModel } from "../../models/basket/basket-create.model";
-import { BasketService } from "../../services/basket/basket.service";
+import { BasketService } from "../../services/basket.service";
 
 @Component({
     templateUrl: './product.component.html'
@@ -16,25 +16,20 @@ export class ProductComponent implements OnInit {
         private productService: ProductService,
         private route: ActivatedRoute,
         private router: Router,
-        private authService: AuthService,
         private basketService: BasketService) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = params['id'];
             this.productService.getProductById(id)
-                .subscribe(data => {
-                    this.product = data;
+                .subscribe(res => {
+                    this.product = res['data'];
                 });
         })
     }
 
-    private isLogged() {
-        return this.authService.isLoggedIn();
-    }
-    
     orderProduct() {
-        let basket = new BasketCreateModel(this.product._id);
-        this.basketService.addProduct(basket); 
+        debugger
+        this.basketService.addToCart(this.product._id);
     }
 }

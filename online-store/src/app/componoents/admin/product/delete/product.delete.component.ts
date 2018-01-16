@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { AdminProductService } from '../../../../services/admin/admin-product.service';
+import { ProductService } from '../../../../services/product.service';
 
 @Component({
     template: ''
 })
 export class AdminDeleteProductComponent implements OnInit {
     constructor(
-        private service: AdminProductService,
-        private toastr: ToastsManager,
+        private service: ProductService,
         private router: Router,
         private route: ActivatedRoute
     ) { }
@@ -21,7 +19,6 @@ export class AdminDeleteProductComponent implements OnInit {
 
             this.service.deleteProduct(id)
                 .subscribe(data => {
-                    this.toastr.success('Product deleted successfullt!');
                     this.router.navigate(['/admin/products']);
                 });
         })

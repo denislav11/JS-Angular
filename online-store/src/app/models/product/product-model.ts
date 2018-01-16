@@ -3,25 +3,25 @@ export class ProductModel {
     public title: string;
     public price: number;
     public description: string;
-    public categoryId: string;
+    public category: string;
     public model: string;
-    public imageUrl: string;
+    public image: string;
 
     constructor(
         _id: string,
         title: string,
         price: number,
         description: string,
-        categoryId: string,
+        category: string,
         model: string,
-        imageUrl: string
+        image: string
     ) {
         this._id = _id;
         this.title = title;
         this.price = price;
         this.description = description;
-        this.categoryId = categoryId;
+        this.category = category;
         this.model = model;
-        this.imageUrl = imageUrl;
+        this.image = image;
     }
 }

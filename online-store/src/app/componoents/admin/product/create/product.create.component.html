@@ -80,8 +80,8 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select 
-                    class="form-controll"
-                    [(ngModel)]="productModel.categoryId"
+                    class="form-control"
+                    [(ngModel)]="productModel.category"
                     name="category">
                             <option *ngFor="let cat of categories"
                             [value]="cat._id">
@@ -97,7 +97,7 @@
                         required
                         minlength="6"
                         name="imageUrl"
-                        [(ngModel)]="productModel.imageUrl"
+                        [(ngModel)]="productModel.image"
                         #imageUrl="ngModel">
                 </div>
                 <div *ngIf="imageUrl.invalid && (imageUrl.touched || imageUrl.dirty)"
