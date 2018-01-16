@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminProductTableModel } from '../../../models/admin/product/product-table-model';
 import { Router } from '@angular/router';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from '../../../services/products/product.service';
 
 @Component({
     templateUrl: './products.component.html',

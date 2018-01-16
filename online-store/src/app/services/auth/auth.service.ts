@@ -3,14 +3,16 @@ import { Observable } from 'rxjs';
 
 import {
     baseUrl,
+    appKey,
     registerUrl,
     loginUrl,
     logoutUrl
-} from '../constants';
+} from '../../constants';
 
-import { HttpClientService } from './http-client.service';
+import { HttpClientService } from '../http-client.service';
+import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
-import { UserModel } from '../models/user-model';
+import { UserModel } from '../../models/user-model';
 
 @Injectable()
 export class AuthService {
@@ -21,18 +23,21 @@ export class AuthService {
 
     constructor(
         private http: HttpClientService,
+        private toastr: ToastsManager,
         private router: Router) { }
 
     register(user): void {
-        this.http.post(registerUrl, user)
+        this.http.post(registerUrl, user, 'Basic')
             .subscribe(res => {
+                this.toastr.success(res.message);
                 this.login(user);
             });
     }
 
     login(user): void {
-        this.http.post(loginUrl, user)
+        this.http.post(loginUrl, user, 'Basic')
             .subscribe(res => {
+                this.toastr.success(res.message);
                 this.saveSession(res);
 
                 if (this.isAdmin()) {
@@ -44,8 +49,9 @@ export class AuthService {
     }
 
     logout(): void {
-        this.http.post(logoutUrl, {})
+        this.http.post(logoutUrl, {}, 'Kinvey')
             .subscribe(res => {
+                this.toastr.success(res.message);
                 localStorage.clear();
                 this.router.navigate(['']);
             });

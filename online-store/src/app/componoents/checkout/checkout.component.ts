@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../models/user-model';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { ProductModel } from '../../models/product/product-model';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/products/product.service';
 import { OrderService } from '../../services/order/order.service';
 import { OrderCreateModel } from '../../models/order/order-create.model';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';

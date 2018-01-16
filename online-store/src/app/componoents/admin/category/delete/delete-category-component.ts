@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../../../services/category.service';
+import { AdminCategoryService } from '../../../../services/admin/admin-category.service';
 import { ToastsManager } from 'ng2-toastr/src/toast-manager';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdminDeleteCategoryComponent implements OnInit {
     constructor(
-        private service: CategoryService,
+        private service: AdminCategoryService,
         private toastr: ToastsManager,
         private router: Router,
         private route: ActivatedRoute

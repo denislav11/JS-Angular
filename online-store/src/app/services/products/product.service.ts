@@ -1,36 +1,24 @@
 import { Injectable } from "@angular/core";
-import { HttpClientService } from "./http-client.service";
+import { HttpClientService } from "../http-client.service";
 import { Observable } from "rxjs/Observable";
-import { productUrl } from '../constants';
-import { CreateProductModel } from "../models/create-product-model";
-import { AdminProductTableModel } from "../models/admin/product/product-table-model";
 import { map } from 'rxjs/operators';
-import { ProductModel } from "../models/product/product-model";
-import { HotProductModel } from "../models/product/hot-product-model";
+
+import { productUrl } from '../../constants';
+import { ProductModel } from "../../models/product/product-model";
+import { HotProductModel } from "../../models/product/hot-product-model";
+
+const queryHotProducts = `${productUrl}/?query={}&sort={"_kmd.ect": -1}&limit=10`;
 
 @Injectable()
 export class ProductService {
     constructor(private http: HttpClientService) { }
 
-    createProduct(product: CreateProductModel): Observable<Object> {
-        return this.http.post<CreateProductModel>(productUrl, product);
-    }
-
-    editProduct(product: ProductModel): Observable<Object> {
-        return this.http.put<ProductModel>(productUrl + '/' + product._id, product);
-    }
-
-    deleteProduct(id: string) {
-        console.log(productUrl + '/' + id);
-        return this.http.delete(productUrl + '/' + id);
-    }
-
     getAllProducts(): Observable<ProductModel[]> {
         return this.http.get<ProductModel[]>(productUrl)
             .pipe(
-            map(res => {
+            map(data => {
                 let arr: ProductModel[] = [];
-                for (let product of res['data']) {
+                for (let product of data) {
                     arr.push(new ProductModel(
                         product._id,
                         product.title,
@@ -50,7 +38,7 @@ export class ProductService {
     }
 
     getHotProducts(): Observable<HotProductModel[]> {
-        return this.http.get<HotProductModel[]>('ddd')
+        return this.http.get<HotProductModel[]>(queryHotProducts)
             .pipe(
             map(data => {
                 let arr: HotProductModel[] = [];

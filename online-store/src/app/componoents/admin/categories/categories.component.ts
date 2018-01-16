@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminCategoryService } from '../../../services/admin/admin-category.service';
 
 import { HttpClient } from '@angular/common/http';
 
 import { categoryUrl } from '../../../constants';
 import { Router } from '@angular/router';
-import { CategoryModel } from '../../../models/category/category.model';
-import { CategoryService } from '../../../services/category.service';
+import { CategoryModel } from '../../../models/category/category-model';
+import { CategoryService } from '../../../services/category/category-service';
 
 @Component({
     templateUrl: './categories.component.html'

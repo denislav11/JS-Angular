@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryService } from '../../services/category.service';
-import { CategoryModel } from '../../models/category/category.model';
+import { CategoryService } from '../../services/category/category-service';
+import { CategoryModel } from '../../models/category/category-model';
 import { ProductModel } from '../../models/product/product-model';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/products/product.service';
 import { BasketService } from '../../services/basket/basket.service';
 import { BasketCreateModel } from '../../models/basket/basket-create.model';
 
