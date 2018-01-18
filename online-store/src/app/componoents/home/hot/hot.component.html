@@ -1,11 +1,27 @@
-<div class="col-md-2 product">
-    <div class="front">
-        <a (click)="details()">
-            <img src={{pr.imageUrl}} height="200" alt="" class="img-responsive">
+<div class="col-md-3 col-sm-4">
+    <div class="product">
+        <div class="flip-container">
+            <div class="flipper">
+                <div class="front">
+                    <a (click)="getDetails()">
+                        <img src="{{product.image}} | async" alt="" class="img-responsive">
+                    </a>
+                </div>
+                <div class="back">
+                    <a (click)="getDetails()">
+                        <img src="{{product.image}} | async" alt="" class="img-responsive">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <a (click)="getDetails()" class="invisible">
+            <img src="{{product.image}} | async" alt="" class="img-responsive">
         </a>
+        <div class="text">
+            <h3>
+                <a (click)="getDetails()">{{product.title}}</a>
+            </h3>
+            <p class="price">${{product.price}}</p>
+        </div>
     </div>
-    <h3>
-        <a (click)="details()">{{pr.title}}</a>
-    </h3>
-    <p class="price">${{pr.price}}</p>
 </div>

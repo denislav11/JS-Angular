@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { BasketService } from '../../../services/basket.service';
+import { CartService } from '../../../services/cart.service';
 import { CategoryService } from '../../../services/category.service';
 import { CategoryModel } from '../../../models/category/category.model';
 import { Router } from '@angular/router';

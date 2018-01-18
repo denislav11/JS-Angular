@@ -4,7 +4,7 @@ import { ProductService } from "../../services/product.service";
 import { ProductModel } from "../../models/product/product-model";
 import { AuthService } from "../../services/auth.service";
 import { BasketCreateModel } from "../../models/basket/basket-create.model";
-import { BasketService } from "../../services/basket.service";
+import { CartService } from "../../services/cart.service";
 
 @Component({
     templateUrl: './product.component.html'
@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit {
         private productService: ProductService,
         private route: ActivatedRoute,
         private router: Router,
-        private basketService: BasketService) { }
+        private basketService: CartService) { }
 
     ngOnInit() {
         this.route.params.subscribe(params => {
@@ -29,7 +29,6 @@ export class ProductComponent implements OnInit {
     }
 
     orderProduct() {
-        debugger
-        this.basketService.addToCart(this.product._id);
+        this.basketService.addToCart(this.product);
     }
 }

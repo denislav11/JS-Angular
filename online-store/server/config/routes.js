@@ -1,7 +1,9 @@
 const controllers = require('../controllers');
+const querymen = require('querymen');
 
 module.exports = app => {
     //User
+    app.get('/user/:id', controllers.user.getUserById);
     app.post('/register', controllers.user.registerPost);
     app.post('/logout', controllers.user.logout);
     app.post('/login', controllers.user.loginPost);
@@ -14,11 +16,19 @@ module.exports = app => {
     app.delete('/category/:id', controllers.category.deleteCategoryById);
 
     //Product
-    app.get('/product', controllers.product.getAllProducts);
+    app.get('/product', querymen.middleware({
+        q: {
+            type: String,
+            paths: ['category']
+        }
+    }), controllers.product.getAllProducts);
     app.get('/product/:id', controllers.product.getProductById);
     app.post('/product', controllers.product.createProduct);
     app.put('/product', controllers.product.editProductById);
     app.delete('/product/:id', controllers.product.deleteProductById);
+
+    //Orders
+    app.post('/order', controllers.order.createOrder);
 
     app.all('*', (req, res) => {
         res.status(404);

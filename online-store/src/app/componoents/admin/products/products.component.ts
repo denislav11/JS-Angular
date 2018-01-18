@@ -20,9 +20,9 @@ export class AdminProductsComponent implements OnInit {
     }
 
     private getProducts() {
-        this.productsService.getAllProducts()
+        this.productsService.getAllProducts('')
             .subscribe(data => {
-                this.products = data; 
+                this.products = data;
             });
     }
 

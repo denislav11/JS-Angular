@@ -34,14 +34,19 @@ module.exports = {
         }
     },
     getAllProducts: async (req, res) => {
+        let query = req.querymen;
+        let q = query.query;
+        if (Object.keys(q).length !== 0) {
+            q['category'] = q['category'].replace(/\s/g, '');
+        }
         try {
-            let products = await Product.find({});
+            let products = await Product.find(query.query, query.select, query.cursor);
+
             return res.status(200).json({
                 success: true,
                 data: products
             })
         } catch (err) {
-            console.log(err);
             return res.status(400).json({
                 success: true,
                 message: 'Something gone wrong!'
@@ -115,9 +120,5 @@ module.exports = {
                 message: err
             });
         }
-    },
-    getHotProducts: async (req, res) => {
-        console.log('ddddddd')
-        console.log(req.params);
     }
 }

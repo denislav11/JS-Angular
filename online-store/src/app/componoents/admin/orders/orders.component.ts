@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderAdminTableModel } from '../../../models/order/order-model';
-import { OrderService } from '../../../services/order/order.service';
+import { OrderService } from '../../../services/order.service';
 
 @Component({
     templateUrl: './orders.component.html',

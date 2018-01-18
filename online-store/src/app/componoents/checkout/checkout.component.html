@@ -1,13 +1,13 @@
 <div id="all">
 
     <div id="content">
-        <div class="container">
+        <div *ngIf="shoppingCartItems.length!==0; else emptyCart" class="container">
             <div class="col-md-12">
                 <ul class="breadcrumb">
                     <li>
-                        <a routerLink="">Home</a>
+                        <a routerLink="/asdad">Home</a>
                     </li>
-                    <li>Checkout - Address</li>
+                    <li>Checkout</li>
                 </ul>
             </div>
 
@@ -53,16 +53,15 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="company">Telephone</label>
-                                        <input type="text" class="form-control" id="company" name="telephone" required minlength="6" [(ngModel)]="user.telephone"
-                                            #telephone="ngModel">
+                                        <label for="company">Phone</label>
+                                        <input type="text" class="form-control" id="company" name="phone" required minlength="6" [(ngModel)]="user.phone" #phone="ngModel">
                                     </div>
-                                    <div *ngIf="telephone.invalid && (telephone.dirty||telephone.touched)" class="alert alert-danger">
-                                        <div *ngIf="telephone.errors.required">
-                                            Telephone is required!
+                                    <div *ngIf="phone.invalid && (phone.dirty||phone.touched)" class="alert alert-danger">
+                                        <div *ngIf="phone.errors.required">
+                                            Phone is required!
                                         </div>
-                                        <div *ngIf="telephone.errors.minlength">
-                                            Telephone must be at least 6 symbols long!
+                                        <div *ngIf="phone.errors.minlength">
+                                            Phone must be at least 6 symbols long!
                                         </div>
                                     </div>
                                 </div>
@@ -118,8 +117,8 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
-                                <tr *ngFor="let pr of products">
-                                    {{pr.title}} : {{pr.price}}
+                                <tr *ngFor="let pr of shoppingCartItems">
+                                    {{pr.title}}: ${{pr.price}}
                                 </tr>
                                 <tr class="total">
                                     <td>Total</td>
@@ -131,5 +130,18 @@
                 </div>
             </div>
         </div>
+        <ng-template #emptyCart>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-5 offset-md-3">
+                    <h3>Your shopping cart is empty!</h3>
+                    <a routerLink="" class="btn btn-default">
+                        Back to home
+                    </a>
+                    <br/>
+                    <br/>
+                </div>
+            </div>
+        </ng-template>
     </div>
 </div>

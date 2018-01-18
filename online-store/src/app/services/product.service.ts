@@ -25,8 +25,8 @@ export class ProductService {
         return this.http.delete(productUrl + '/' + id);
     }
 
-    getAllProducts(): Observable<ProductModel[]> {
-        return this.http.get<ProductModel[]>(productUrl)
+    getAllProducts(query): Observable<ProductModel[]> {
+        return this.http.get<ProductModel[]>(productUrl + query)
             .pipe(
             map(res => {
                 let arr: ProductModel[] = [];
@@ -50,16 +50,16 @@ export class ProductService {
     }
 
     getHotProducts(): Observable<HotProductModel[]> {
-        return this.http.get<HotProductModel[]>(productUrl + '/?page=2')
+        return this.http.get<HotProductModel[]>(productUrl + '/?limit=10&sort=-date')
             .pipe(
-            map(data => {
+            map(res => {
                 let arr: HotProductModel[] = [];
-                for (let product of data) {
+                for (let product of res['data']) {
                     arr.push(new HotProductModel(
                         product._id,
                         product.title,
                         product.price,
-                        product.imageUrl
+                        product.image
                     ))
                 }
                 return arr;

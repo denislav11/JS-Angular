@@ -494,6 +494,7 @@ h1 {
   width: 100%;
 }
 #content .product .flipper {
+	background:blue;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;

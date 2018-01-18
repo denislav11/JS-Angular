@@ -7,6 +7,9 @@ const productSchema = new mongoose.Schema({
         required: [true, 'Title is required!'],
         minlength: [3, 'Title must be at least 3 characters long!']
     },
+    date: {
+        type: mongoose.Schema.Types.Date, default: Date.now
+    },
     model: {
         type: mongoose.Schema.Types.String,
         minlength: [3, 'Model must be at least 3 characters long!'],
@@ -22,6 +25,9 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: ObjectId, ref: 'Category'
+    },
+    order: {
+        type: ObjectId, ref: 'Order'
     },
     image: {
         type: mongoose.Schema.Types.String,

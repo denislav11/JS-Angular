@@ -5,7 +5,8 @@ import {
     baseUrl,
     registerUrl,
     loginUrl,
-    logoutUrl
+    logoutUrl,
+    userUrl
 } from '../constants';
 
 import { HttpClientService } from './http-client.service';
@@ -52,9 +53,7 @@ export class AuthService {
     }
 
     getCurrentUser(): Observable<UserModel> {
-        if (this.isLoggedIn()) {
-            return this.http.get<UserModel>(registerUrl + '/' + this.getUserId());
-        }
+        return this.http.get<UserModel>(userUrl + '/' + this.getUserId());
     }
 
     private saveSession(res) {

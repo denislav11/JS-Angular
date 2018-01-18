@@ -13,10 +13,6 @@ export class CategoryPageProduct {
 
     constructor(private userService: AuthService) { }
 
-    private isLogged() {
-        return this.userService.isLoggedIn();
-    }
-
     getDetails() {
         this.getProductDetails.emit(this.product._id);
     }

@@ -14,6 +14,9 @@ export class HttpClientService {
 
     get<T>(url: string) {
         return this.http.get<T>(url, { headers: { 'Content-Type': 'application/json' } })
+            .pipe(
+            catchError(err => this.handleError(err))
+            )
     }
 
     post<T>(url: string, body: any) {

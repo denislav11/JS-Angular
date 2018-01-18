@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClientService } from "../http-client.service";
+import { HttpClientService } from "./http-client.service";
 
 import { Observable } from "rxjs/Observable";
 import { map } from 'rxjs/operators';
 import { Router } from "@angular/router";
-import { OrderCreateModel } from "../../models/order/order-create.model";
-import { orderUrl } from "../../constants";
-import { OrderAdminTableModel } from "../../models/order/order-model";
+import { OrderCreateModel } from "../models/order/order-create.model";
+import { orderUrl } from "../constants";
+import { OrderAdminTableModel } from "../models/order/order-model";
 
 @Injectable()
 export class OrderService {
@@ -16,8 +16,11 @@ export class OrderService {
         private router: Router
     ) { }
 
-    purchase(order: OrderCreateModel): Observable<OrderCreateModel> {
-        return this.http.post<OrderCreateModel>(orderUrl, order);
+    purchase(order: OrderCreateModel): void {
+        this.http.post<OrderCreateModel>(orderUrl, order)
+            .subscribe(res => {
+                this.router.navigate(['']);
+            });
     }
 
     getAllOders(): Observable<OrderAdminTableModel[]> {
@@ -35,7 +38,6 @@ export class OrderService {
                     ))
                 }
                 return arr;
-            })
-            );
+            }));
     }
 }

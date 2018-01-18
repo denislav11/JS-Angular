@@ -17,7 +17,7 @@ export const routes: Routes = [
     { path: "logout", component: LogoutComponent },
     { path: "product/:id", component: ProductComponent },
     { path: "category/:id", component: CategoryComponent },
-    { path: "checkout", canActivate: [AuthGuard], component: CheckoutComponent },
+    { path: "checkout", component: CheckoutComponent },
     { path: "admin", loadChildren: "app/componoents/admin/admin.module#AdminModule" },
     { path: "**", component: NotFound }
 ] 

@@ -1,5 +1,5 @@
 export class OrderCreateModel {
-    public name: string;
+    public customer: string;
     public address: string;
     public phone: string;
     public email: string;
@@ -8,7 +8,7 @@ export class OrderCreateModel {
     public products: string[]
 
     constructor(
-        name: string,
+        customer: string,
         address: string,
         phone: string,
         email: string,
@@ -16,7 +16,7 @@ export class OrderCreateModel {
         comment: string,
         products: string[]
     ) {
-        this.name = name;
+        this.customer = customer;
         this.address = address;
         this.phone = phone;
         this.email = email;
