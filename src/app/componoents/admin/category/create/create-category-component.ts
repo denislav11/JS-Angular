@@ -7,7 +7,7 @@ import { CreateCategoryModel } from '../../../../models/category/create-category
     templateUrl: './create-category-component.html'
 })
 export class AdminCreateCategoryComponent {
-    public model: CreateCategoryModel;
+    private model: CreateCategoryModel;
 
     constructor(
         private service: CategoryService,

@@ -7,8 +7,8 @@ import { CategoryModel } from '../../../../models/category/category.model';
     templateUrl: "./edit-category-component.html"
 })
 export class AdminEditCategoryComponent implements OnInit {
-    public model: CategoryModel;
-    public id: string;
+    private model: CategoryModel;
+    private id: string;
 
     constructor(
         private categoryService: CategoryService,

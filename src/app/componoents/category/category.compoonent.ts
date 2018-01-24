@@ -10,8 +10,8 @@ import { CartService } from '../../services/cart.service';
     templateUrl: './category.compoonent.html'
 })
 export class CategoryComponent implements OnInit {
-    public category: CategoryModel;
-    public products: ProductModel[] = [];
+    private category: CategoryModel;
+    private products: ProductModel[] = [];
 
     constructor(
         private route: ActivatedRoute,

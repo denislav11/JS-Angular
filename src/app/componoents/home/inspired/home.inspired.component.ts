@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
     selector: 'inspired'
 })
 export class HomeInspiredComponent {
-    public image = '../../../../assets/img/getinspired1.jpg';
-    public image2 = '../../../../assets/img/getinspired2.jpg';
+    private image = '../../../../assets/img/getinspired1.jpg';
+    private image2 = '../../../../assets/img/getinspired2.jpg';
 }

@@ -9,7 +9,7 @@ import { HotProductModel } from '../../../models/product/hot-product-model';
 export class HotComponent implements OnChanges {
     @Input() product: HotProductModel;
     @Output() getProductDetails = new EventEmitter<string>();
-    public productImg: string;
+    private productImg: string;
 
     getDetails() {
         this.getProductDetails.emit(this.product._id);

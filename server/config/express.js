@@ -4,9 +4,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const path = require('path');
 
 module.exports = app => {
     app.use(cors());
+	
+	app.use(express.static(path.join(__dirname, '../../dist')));
 
     app.use(cookieParser());
     app.use(bodyParser.json());

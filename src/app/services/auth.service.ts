@@ -11,7 +11,7 @@ import {
 
 import { HttpClientService } from './http-client.service';
 import { Router } from '@angular/router';
-import { UserModel } from '../models/user/user-model';
+import { UserModel } from '../models/user-model';
 
 @Injectable()
 export class AuthService {
