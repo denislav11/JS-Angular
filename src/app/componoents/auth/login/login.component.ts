@@ -6,7 +6,7 @@ import { AuthService } from '../../../services/auth.service';
     templateUrl: './login.component.html'
 })
 export class LoginComponent {
-    private model: UserLogin;
+    public model: UserLogin;
 
     constructor(
         private service: AuthService) {

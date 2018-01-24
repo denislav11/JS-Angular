@@ -8,7 +8,7 @@ import { CategoryService } from '../../../services/category.service';
     selector: 'product-page-categories'
 })
 export class ProductPageCategories implements OnInit {
-    private categories: CategoryModel[];
+    public categories: CategoryModel[];
 
     constructor(
         private categoryService: CategoryService,

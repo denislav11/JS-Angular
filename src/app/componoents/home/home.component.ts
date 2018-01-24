@@ -6,9 +6,9 @@ import { HotProductModel } from '../../models/product/hot-product-model';
     templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-    private products: HotProductModel[];
-    private SLIDER = 'assets/img/main-slider1.jpg';
-    private imageResponsive = 'assets/img/main-slider2.jpg';
+    public products: HotProductModel[];
+    public SLIDER = 'assets/img/main-slider1.jpg';
+    public imageResponsive = 'assets/img/main-slider2.jpg';
 
     constructor(
         private service: ProductService

@@ -10,9 +10,9 @@ import { ToastsManager } from "ng2-toastr/src/toast-manager";
     templateUrl: './product.create.component.html'
 })
 export class AdminCreateProductComponent implements OnInit {
-    private productModel: CreateProductModel;
-    private categories: CategoryModel[];
-    private filesToUpload: Array<File>;
+    public productModel: CreateProductModel;
+    public categories: CategoryModel[];
+    public filesToUpload: Array<File>;
 
     constructor(
         private categoryService: CategoryService,

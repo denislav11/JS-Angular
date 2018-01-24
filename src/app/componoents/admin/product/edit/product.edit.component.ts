@@ -11,9 +11,9 @@ import { ToastsManager } from "ng2-toastr";
     templateUrl: './product.edit.component.html'
 })
 export class AdminEditProductComponent implements OnInit {
-    private productModel: ProductModel;
-    private categories: CategoryModel[];
-    private filesToUpload: Array<File>;
+    public productModel: ProductModel;
+    public categories: CategoryModel[];
+    public filesToUpload: Array<File>;
 
     constructor(
         private categoryService: CategoryService,
