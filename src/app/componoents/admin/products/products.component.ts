@@ -8,7 +8,7 @@ import { ProductService } from '../../../services/product.service';
     styleUrls: ['./products.component.css']
 })
 export class AdminProductsComponent implements OnInit {
-    private products: AdminProductTableModel[];
+    public products: AdminProductTableModel[];
 
     constructor(
         private productsService: ProductService,

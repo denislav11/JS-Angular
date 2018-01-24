@@ -6,7 +6,7 @@ import { UserRegister } from '../../../models/user/user-register';
     templateUrl: "./register.component.html"
 })
 export class RegisterComponent {
-    public model: UserRegister;
+    model: UserRegister;
 
     constructor(private service: AuthService) {
         this.model = new UserRegister('', '', '', '', '');
