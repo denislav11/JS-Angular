@@ -1,9 +1,9 @@
 const env = process.env.NODE_ENV || 'development';
 
-const config = require('./server/config/config')[env];
-require('./server/config/database')(config);
+const config = require('./config/config')[env];
+require('./config/database')(config);
 const app = require('express')();
-require('./server/config/express')(app);
-require('./server/config/routes')(app);
-require('./server/config/passport')();
+require('./config/express')(app);
+require('./config/routes')(app);
+require('./config/passport')();
 app.listen(config.port);
