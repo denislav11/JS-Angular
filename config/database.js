@@ -7,7 +7,7 @@ const Product = require('../models/Product');
 const Order = require('../models/Order');
 
 module.exports = config => {
-    mongoose.connect(config.dbPath, {
+    mongoose.connect(process.env.MONGODB_URI, {
         useMongoClient: true
     });
     const db = mongoose.connection;
