@@ -5,6 +5,7 @@
 @import "./owl.carousel.css";
 @import "./owl.theme.css";
 
-@import "./style.default.css"; 
+@import "./style.default.css";
+@import "./custom.css";
 
 @import "./auth.forms.css";
