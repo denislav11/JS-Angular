@@ -58,6 +58,7 @@ export class CheckoutComponent implements OnInit {
                 return pr._id
             })
         );
+        this.basketService.emptyCart();
         this.orderService.purchase(model);
     }
 }

@@ -26,10 +26,10 @@ export class OrderService {
     getAllOders(): Observable<OrderAdminTableModel[]> {
         return this.http.get<OrderAdminTableModel[]>(orderUrl)
             .pipe(
-            map(data => {
+            map(res => {
                 let arr: OrderAdminTableModel[] = [];
 
-                for (let order of data) {
+                for (let order of res['data']) {
                     arr.push(new OrderAdminTableModel(
                         order.name,
                         order.address,

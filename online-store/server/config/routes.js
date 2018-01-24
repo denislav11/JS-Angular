@@ -1,7 +1,21 @@
 const controllers = require('../controllers');
 const querymen = require('querymen');
+const multer = require('multer');
+const path = require('path');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../../src/assets/img'))
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname.replace(/\s+/g, ''));
+    }
+})
+
+const upload = multer({ storage: storage });
 
 module.exports = app => {
+
     //User
     app.get('/user/:id', controllers.user.getUserById);
     app.post('/register', controllers.user.registerPost);
@@ -29,6 +43,14 @@ module.exports = app => {
 
     //Orders
     app.post('/order', controllers.order.createOrder);
+    app.get('/order', controllers.order.getAllOrders);
+
+    //Image
+    app.post(
+        "/upload",
+        upload.array("uploads[]", 12),
+        controllers.image.upload
+    );
 
     app.all('*', (req, res) => {
         res.status(404);

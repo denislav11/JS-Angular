@@ -7,8 +7,8 @@ import { HotProductModel } from '../../models/product/hot-product-model';
 })
 export class HomeComponent implements OnInit {
     private products: HotProductModel[];
-    private SLIDER = '../../../assets/img/main-slider1.jpg';
-    private imageResponsive = '../../../assets/img/main-slider2.jpg';
+    private SLIDER = 'assets/img/main-slider1.jpg';
+    private imageResponsive = 'assets/img/main-slider2.jpg';
 
     constructor(
         private service: ProductService

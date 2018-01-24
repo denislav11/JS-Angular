@@ -24,4 +24,8 @@ export class CartService {
     public getItems(): Observable<ProductModel[]> {
         return this.itemsInCartSubject;
     }
+
+    public emptyCart() {
+        this.itemsInCartSubject.next([]);
+    }
 }

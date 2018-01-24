@@ -8,3 +8,4 @@ export const userUrl = `${baseUrl}user`;
 export const categoryUrl = `${baseUrl}category`;
 export const productUrl = `${baseUrl}product`;
 export const orderUrl = `${baseUrl}order`;
+export const imageUrl = `${baseUrl}upload`;

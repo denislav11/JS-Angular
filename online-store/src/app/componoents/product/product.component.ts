@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ProductService } from "../../services/product.service";
 import { ProductModel } from "../../models/product/product-model";
 import { AuthService } from "../../services/auth.service";
-import { BasketCreateModel } from "../../models/basket/basket-create.model";
 import { CartService } from "../../services/cart.service";
 
 @Component({

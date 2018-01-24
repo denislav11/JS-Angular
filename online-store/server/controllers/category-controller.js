@@ -2,7 +2,7 @@ const Category = require('../models/Category');
 
 module.exports = {
     createCategory: async (req, res) => {
-        const body = req.body;
+        const body = req.body; 
         try {
             const category = await Category.create(body);
 
@@ -53,7 +53,7 @@ module.exports = {
         }
     },
     editCategory: async (req, res) => {
-        let body = req.body;
+        let body = req.body; 
         try {
             let updated = await Category.findOneAndUpdate({ _id: body._id }, body);
             return res.status(200).json({

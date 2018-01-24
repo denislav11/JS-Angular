@@ -4,11 +4,13 @@ const Category = require('../models/Category');
 module.exports = {
     createProduct: async (req, res) => {
         let body = req.body;
+
         try {
             let product = await Product.create(body);
-
-            let category = await Category.findByIdAndUpdate(product.category,
-                { $push: { products: product._id } });
+            if (product.category !== null) {
+                let category = await Category.findByIdAndUpdate(product.category,
+                    { $push: { products: product._id } });
+            }
 
             return res.status(201).json({
                 success: true,
@@ -71,10 +73,15 @@ module.exports = {
     },
     editProductById: async (req, res) => {
         let body = req.body;
-        let id = body._id;
 
+        let id = body._id;
         try {
-            await Product.findByIdAndUpdate(id, body);
+            let product = await Product.findByIdAndUpdate(id, body);
+
+            if (product.category !== null) {
+                let category = await Category.findByIdAndUpdate(product.category,
+                    { $push: { products: product._id } });
+            }
 
             return res.status(200).json({
                 success: true,
@@ -102,8 +109,7 @@ module.exports = {
         let id = req.params.id;
 
         try {
-            let product = await Product.findByIdAndRemove(id);
-            console.log(product);
+            let product = await Product.findByIdAndRemove(id); 
             let categoryId = product.category;
 
             await Category.findByIdAndUpdate(categoryId, {

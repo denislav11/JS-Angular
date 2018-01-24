@@ -30,7 +30,7 @@ const productSchema = new mongoose.Schema({
         type: ObjectId, ref: 'Order'
     },
     image: {
-        type: mongoose.Schema.Types.String,
+        type: mongoose.Schema.Types.String
     }
 });
 

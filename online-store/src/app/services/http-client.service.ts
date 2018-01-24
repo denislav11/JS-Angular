@@ -13,19 +13,18 @@ export class HttpClientService {
     ) { }
 
     get<T>(url: string) {
-        return this.http.get<T>(url, { headers: { 'Content-Type': 'application/json' } })
-            .pipe(
-            catchError(err => this.handleError(err))
-            )
+        return this.http.get<T>(url, { headers: { 'Content-Type': 'application/json' } });
     }
 
-    post<T>(url: string, body: any) {
+    post<T>(url: string, body: any, headers?: any) {
+        let h = { 'Content-Type': 'application/json' };
+        if (headers) {
+            h = headers;
+        }
         return this.http.post<T>
             (url, JSON.stringify(body),
             {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: h
             })
             .pipe(
             map(res => {
@@ -35,10 +34,14 @@ export class HttpClientService {
             catchError(err => this.handleError(err)));
     }
 
-    put<T>(url: string, body: any) {
+    put<T>(url: string, body: any, headers?) {
+        let h = { 'Content-Type': 'application/json' };
+        if (headers) {
+            h = headers;
+        }
         return this.http.put(url,
             JSON.stringify(body),
-            { headers: {} })
+            { headers: h })
             .pipe(
             map(res => {
                 this.showSuccess(res);
@@ -60,6 +63,7 @@ export class HttpClientService {
     }
 
     private handleError(err) {
+        console.log(err);
         if (err.error.messages) {
             for (let er of err.error.messages) {
                 this.toastr.error(er);

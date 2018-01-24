@@ -8,12 +8,15 @@ import { AdminComponent } from './home/admin.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    declarations: [...components],
+    declarations: [
+        ...components
+    ],
     imports: [
         CommonModule,
         FormsModule,
         RouterModule,
-        RouterModule.forChild(adminRoutes)],
+        RouterModule.forChild(adminRoutes)
+    ],
     exports: [AdminComponent]
 })
 export class AdminModule { }

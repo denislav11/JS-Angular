@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClientService } from "./http-client.service";
 import { Observable } from "rxjs/Observable";
-import { productUrl } from '../constants';
+import { productUrl, imageUrl } from '../constants';
 import { CreateProductModel } from "../models/create-product-model";
 import { AdminProductTableModel } from "../models/admin/product/product-table-model";
 import { map } from 'rxjs/operators';
@@ -21,7 +21,6 @@ export class ProductService {
     }
 
     deleteProduct(id: string) {
-        console.log(productUrl + '/' + id);
         return this.http.delete(productUrl + '/' + id);
     }
 
@@ -64,5 +63,13 @@ export class ProductService {
                 }
                 return arr;
             }));
+    }
+
+    uploadImage(files: File[]): Observable<Object> {
+        let formData: FormData = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            formData.append("uploads[]", files[i], files[i].name);
+        }
+        return this.http.post(imageUrl, formData);
     }
 }
