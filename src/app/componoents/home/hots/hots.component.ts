@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     selector: 'hot-products'
 })
 export class HotsComponent implements OnInit {
-    private products: HotProductModel[] = [];
+    public products: HotProductModel[] = [];
 
     constructor(
         private service: ProductService,

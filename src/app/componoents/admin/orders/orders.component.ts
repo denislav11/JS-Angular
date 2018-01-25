@@ -7,7 +7,7 @@ import { OrderService } from '../../../services/order.service';
     selector: 'admin-oders'
 })
 export class OrdersComponent implements OnInit {
-    private orders: OrderAdminTableModel[];
+    public orders: OrderAdminTableModel[];
 
     constructor(private ordersService: OrderService) { }
 

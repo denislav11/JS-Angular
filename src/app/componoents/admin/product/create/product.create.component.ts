@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CreateProductModel } from "../../../../models/create-product-model";
+import { CreateProductModel } from "../../../../models/product/create-product-model";
 import { CategoryService } from "../../../../services/category.service";
 import { ProductService } from "../../../../services/product.service";
 import { Router } from "@angular/router";
@@ -10,9 +10,9 @@ import { ToastsManager } from "ng2-toastr/src/toast-manager";
     templateUrl: './product.create.component.html'
 })
 export class AdminCreateProductComponent implements OnInit {
-    private productModel: CreateProductModel;
-    private categories: CategoryModel[];
-    private filesToUpload: Array<File>;
+    public productModel: CreateProductModel;
+    public categories: CategoryModel[];
+    public filesToUpload: Array<File>;
 
     constructor(
         private categoryService: CategoryService,

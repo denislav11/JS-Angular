@@ -51,10 +51,10 @@ module.exports = app => {
         upload.array("uploads[]", 12),
         controllers.image.upload
     );
-	
-	app.get('/*', function(req, res) {
-		res.sendFile(path.join(__dirname + '../../dist/index.html'));
-	});
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+    });
 
     app.all('*', (req, res) => {
         res.status(404);

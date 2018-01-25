@@ -1,6 +1,6 @@
 export class UserLogin {
-    private email: string;
-    private password: string;
+    public email: string;
+    public password: string;
 
     constructor(email: string, password: string) {
         this.email = email;

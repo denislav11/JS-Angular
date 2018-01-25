@@ -11,7 +11,7 @@ import { CategoryService } from '../../../services/category.service';
     templateUrl: './categories.component.html'
 })
 export class AdminCategoriesComponent implements OnInit {
-    private categories: CategoryModel[];
+    public categories: CategoryModel[];
 
     constructor(
         private service: CategoryService,

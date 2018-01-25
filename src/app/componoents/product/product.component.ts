@@ -9,7 +9,7 @@ import { CartService } from "../../services/cart.service";
     templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit {
-    private product: ProductModel;
+    public product: ProductModel;
 
     constructor(
         private productService: ProductService,

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClientService } from "./http-client.service";
 import { Observable } from "rxjs/Observable";
 import { productUrl, imageUrl } from '../constants';
-import { CreateProductModel } from "../models/create-product-model";
+import { CreateProductModel } from "../models/product/create-product-model";
 import { AdminProductTableModel } from "../models/admin/product/product-table-model";
 import { map } from 'rxjs/operators';
 import { ProductModel } from "../models/product/product-model";

@@ -5,5 +5,6 @@ module.exports = {
             message: "Image uploaded!",
             data: req['files']
         });
+        
     }
 }

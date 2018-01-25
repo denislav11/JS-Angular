@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserModel } from '../../models/user-model';
+import { UserModel } from '../../models/user/user-model';
 import { AuthService } from '../../services/auth.service';
 import { ProductModel } from '../../models/product/product-model';
 import { OrderService } from '../../services/order.service';
@@ -14,12 +14,12 @@ import { of } from 'rxjs/observable/of';
     templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent implements OnInit {
-    private user: UserModel;
-    private comment: string;
-    private total: number = 0;
-
-    private shoppingCartItems$: Observable<ProductModel[]> = of([]);
-    private shoppingCartItems: ProductModel[] = [];
+    public user: UserModel;
+    public comment: string;
+    public total: number = 0; 
+	
+    public shoppingCartItems$: Observable<ProductModel[]> = of([]);
+    public shoppingCartItems: ProductModel[] = [];
 
     constructor(
         private basketService: CartService,
