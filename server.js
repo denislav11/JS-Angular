@@ -1,6 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 
 const config = require('./server/config/config')[env];
+console.log(env);
 console.log(config);
 require('./server/config/database')(config);
 const app = require('express')();
