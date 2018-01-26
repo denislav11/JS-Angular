@@ -1,0 +1,24 @@
+#side-menu > li > a {
+    border-left: 3px solid transperant;
+}
+ 
+#side-menu li a {
+    color: #54667a;
+    border-left: 0px solid #fff;
+} 
+#side-menu li a {
+    color: #54667a;
+} 
+#side-menu>li>a {
+    padding: 15px 35px 15px 20px;
+    display: block;
+} 
+#side-menu li a {
+    color: #97999f;
+    width: 240px;
+} 
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}

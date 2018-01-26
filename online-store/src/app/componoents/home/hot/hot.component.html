@@ -1,0 +1,27 @@
+<div class="col-md-3 col-sm-4">
+    <div class="product">
+        <div class="flip-container">
+            <div class="flipper">
+                <div class="front">
+                    <a (click)="getDetails()">
+                        <img [src]="productImg" alt="" class="img-responsive">
+                    </a>
+                </div>
+                <div class="back">
+                    <a (click)="getDetails()">
+                        <img [src]="productImg" alt="" class="img-responsive">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <a (click)="getDetails()" class="invisible">
+            <img [src]="productImg" alt="" class="img-responsive">
+        </a>
+        <div class="text">
+            <h3>
+                <a (click)="getDetails()">{{product.title}}</a>
+            </h3>
+            <p class="price">${{product.price}}</p>
+        </div>
+    </div>
+</div>

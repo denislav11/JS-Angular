@@ -1,0 +1,11 @@
+@import "../../../node_modules/ng2-toastr/bundles/ng2-toastr.min.css";
+@import "./font-awesome.css";
+@import "./bootstrap.min.css";
+@import "./animate.min.css";
+@import "./owl.carousel.css";
+@import "./owl.theme.css";
+
+@import "./style.default.css";
+@import "./custom.css";
+
+@import "./auth.forms.css";

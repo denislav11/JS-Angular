@@ -1,0 +1,52 @@
+<div id="all">
+
+    <div id="content">
+        <div class="container">
+            <product-page-categories></product-page-categories>
+            <div class="col-md-9">
+
+                <div class="row" id="productMain">
+                    <div class="col-sm-6">
+                        <div id="mainImage">
+                            <img src="{{product?.image}}" alt="" class="img-responsive">
+                        </div>
+
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="box">
+                            <h1 class="text-center">{{product?.title}}</h1>
+                            <p class="goToDescription">
+                                <a href="#details" class="scroll-to">Scroll to product details, material & care and sizing</a>
+                            </p>
+                            <p class="price">${{product?.price}}</p>
+
+                            <p class="text-center buttons">
+                                <a (click)="orderProduct()" class="btn btn-primary">
+                                    <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="box" id="details">
+                    {{product?.description}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

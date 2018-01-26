@@ -1,0 +1,74 @@
+<div class="row"> 
+    <admin-menu></admin-menu>
+    <div class="col-md-5 col-md-offset-2">
+        <h2>Create product</h2>
+        <div class="box">
+            <form (ngSubmit)="create()" #createForm="ngForm">
+                <div class="form-group">
+                    <label for="title">Ttile</label>
+                    <input type="text" class="form-control" id="title" required minlength="5" [(ngModel)]="productModel.title" name="title" #title="ngModel"
+                    />
+                </div>
+                <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+                    <div *ngIf="title.errors.required">
+                        Title is required!
+                    </div>
+                    <div *ngIf="title.errors.minlength">
+                        Title must be at least 5 symbols long!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" class="form-control" id="model" required minlength="3" name="model" [(ngModel)]="productModel.model" #model="ngModel">
+                </div>
+                <div *ngIf="model.invalid && (model.touched || model.dirty)" class="alert alert-danger">
+                    <div *ngIf="model.errors.required">
+                        Model is required!
+                    </div>
+                    <div *ngIf="model.errors.minlength">
+                        Model must be at least 3 symbols long!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" required minlength="10" name="description" [(ngModel)]="productModel.description"
+                        #description="ngModel"></textarea>
+                </div>
+                <div *ngIf="description.invalid && 
+                        (description.touched || description.dirty)" class="alert alert-danger">
+                    <div *ngIf="description.errors.required">
+                        Description is required!
+                    </div>
+                    <div *ngIf="description.errors.minlength">
+                        Description must be at least 6 characters long!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required [(ngModel)]="productModel.price" #price="ngModel">
+                </div>
+                <div *ngIf="price.invalid && (price.touched || price.dirty)" class="alert alert-danger">
+                    <div *ngIf="price.errors.required">
+                        Price is required!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select class="form-control" [(ngModel)]="productModel.category" name="category">
+                        <option *ngFor="let cat of categories" [value]="cat._id">
+                            {{cat.title}}
+                        </option>
+                    </select>
+                </div>
+                <label class="custom-file">
+                    <input type="file" (change)="upload($event)" class="custom-file-input">
+                    <span class="custom-file-control"></span>
+                </label>
+                <div class="text-center">
+                    <button type="submit" [disabled]="createForm.invalid " class="btn btn-primary">
+                        <i class="fa fa-user-md"></i> Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
