@@ -5,6 +5,9 @@ module.exports = {
     },
     production: {
         port: process.env.PORT || 8080,
-        dbPath: process.env.MONGODB_URI || 'mongodb://localhost:27017/online-store'
+        dbPath: 
+		process.env.MONGODB_URI || 
+		process.env.MONGOLAB_URI ||
+		process.env.MONGOHQ_URL
     }
 };
