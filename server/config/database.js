@@ -7,11 +7,9 @@ const Product = require('../models/Product');
 const Order = require('../models/Order');
 
 module.exports = config => {
-    mongoose.connect(
-        process.env.MONGODB_URI ||
-        'mongodb://localhost/HelloMongoose', {
-            useMongoClient: true
-        });
+    mongoose.connect(config.dbPath, {
+        useMongoClient: true
+    });
     const db = mongoose.connection;
     db.once('open', err => {
         if (err) throw err;
