@@ -1,4 +1,6 @@
-export const baseUrl = '/';
+import { environment } from '../environments/environment';
+
+export const baseUrl = environment.apiBaseUrl;
 
 export const registerUrl = `${baseUrl}register`;
 export const loginUrl = `${baseUrl}login`;
