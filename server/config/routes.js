@@ -17,37 +17,37 @@ const upload = multer({ storage: storage });
 module.exports = app => {
 
     //User
-    app.get('/user/:id', controllers.user.getUserById);
-    app.post('/register', controllers.user.registerPost);
-    app.post('/logout', controllers.user.logout);
-    app.post('/login', controllers.user.loginPost);
+    app.get('/api/user/:id', controllers.user.getUserById);
+    app.post('/api/register', controllers.user.registerPost);
+    app.post('/api/logout', controllers.user.logout);
+    app.post('/api/login', controllers.user.loginPost);
 
     //Category
-    app.get('/category', controllers.category.getAllCategories);
-    app.get('/category/:id', controllers.category.getCategoryById);
-    app.post('/category', controllers.category.createCategory);
-    app.put('/category', controllers.category.editCategory);
-    app.delete('/category/:id', controllers.category.deleteCategoryById);
+    app.get('/api/category', controllers.category.getAllCategories);
+    app.get('/api/category/:id', controllers.category.getCategoryById);
+    app.post('/api/category', controllers.category.createCategory);
+    app.put('/api/category', controllers.category.editCategory);
+    app.delete('/api/category/:id', controllers.category.deleteCategoryById);
 
     //Product
-    app.get('/product', querymen.middleware({
+    app.get('/api/product', querymen.middleware({
         q: {
             type: String,
             paths: ['category']
         }
     }), controllers.product.getAllProducts);
-    app.get('/product/:id', controllers.product.getProductById);
-    app.post('/product', controllers.product.createProduct);
-    app.put('/product', controllers.product.editProductById);
-    app.delete('/product/:id', controllers.product.deleteProductById);
+    app.get('/api/product/:id', controllers.product.getProductById);
+    app.post('/api/product', controllers.product.createProduct);
+    app.put('/api/product', controllers.product.editProductById);
+    app.delete('/api/product/:id', controllers.product.deleteProductById);
 
     //Orders
-    app.post('/order', controllers.order.createOrder);
-    app.get('/order', controllers.order.getAllOrders);
+    app.post('/api/order', controllers.order.createOrder);
+    app.get('/api/order', controllers.order.getAllOrders);
 
     //Image
     app.post(
-        "/upload",
+        "/api/upload",
         upload.array("uploads[]", 12),
         controllers.image.upload
     );

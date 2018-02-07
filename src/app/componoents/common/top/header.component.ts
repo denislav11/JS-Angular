@@ -4,6 +4,9 @@ import { CartService } from '../../../services/cart.service';
 import { CategoryService } from '../../../services/category.service';
 import { CategoryModel } from '../../../models/category/category.model';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { ProductModel } from '../../../models/product/product-model';
+import { of } from 'rxjs/observable/of';
 
 @Component({
     templateUrl: './header.component.html',
@@ -14,10 +17,18 @@ export class HeaderComponent implements OnInit {
     private LOGO_SMALL = '../../../../assets/img/logo-small.png';
     private categories: CategoryModel[];
 
+    public shopingCartItems$: Observable<ProductModel[]> = of([]);
+    public shopingCartItems: ProductModel[] = [];
+
     constructor(
         private auth: AuthService,
         private router: Router,
-        private categoryService: CategoryService) { }
+        private categoryService: CategoryService,
+        private basketService: CartService) {
+
+        this.shopingCartItems$ = this.basketService.getItems();
+        this.shopingCartItems$.subscribe(_ => this.shopingCartItems = _);
+    }
 
     showHeader(): boolean {
         return !this.auth.isAdmin();
@@ -27,7 +38,7 @@ export class HeaderComponent implements OnInit {
         this.categoryService.getAllCategories()
             .subscribe(data => {
                 this.categories = data;
-            })
+            });
     }
 
     private categoryGetDetails(id) {
