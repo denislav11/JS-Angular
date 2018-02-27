@@ -17,7 +17,8 @@ export class CategoryComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private categoryService: CategoryService,
-        private productService: ProductService
+        private productService: ProductService,
+        private cartService: CartService
     ) { }
 
     ngOnInit() {
@@ -26,15 +27,19 @@ export class CategoryComponent implements OnInit {
             this.categoryService.getCategoryById(id)
                 .subscribe(res => {
                     this.category = res;
-                    this.productService.getAllProducts(`?q=${id}`)
+                    this.productService.getAllProducts(`?category=${id}`)
                         .subscribe(data => {
                             this.products = data;
-                        })
-                })
+                        });
+                });
         });
     }
 
     private getProductDetails(id) {
-        this.router.navigate(['product', id])
+        this.router.navigate(['product', id]);
+    }
+
+    private buyProduct(id) {
+        this.cartService.addToCart(this.products.find(pr => pr._id === id));
     }
 }

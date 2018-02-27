@@ -38,8 +38,13 @@ module.exports = {
     getAllProducts: async (req, res) => {
         let query = req.querymen;
         let q = query.query;
+
         if (Object.keys(q).length !== 0) {
-            q['category'] = q['category'].replace(/\s/g, '');
+            if (q['category']) {
+                q['category'] = q['category'].replace(/\s/g, '');
+            } else if (q['title']) {
+                q['title'] = { "$regex": q['title'], "$options": "i" };
+            }
         }
         try {
             let products = await Product.find(query.query, query.select, query.cursor);
@@ -109,7 +114,7 @@ module.exports = {
         let id = req.params.id;
 
         try {
-            let product = await Product.findByIdAndRemove(id); 
+            let product = await Product.findByIdAndRemove(id);
             let categoryId = product.category;
 
             await Category.findByIdAndUpdate(categoryId, {

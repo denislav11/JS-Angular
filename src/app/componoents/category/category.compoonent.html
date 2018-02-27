@@ -9,7 +9,10 @@
                     <div *ngIf="products.length===0">
                         <h2>No products in that category</h2>
                     </div>
-                    <category-product *ngFor="let pr of products" [productProp]="pr" (getProductDetails)="getProductDetails($event)" (buyProduct)="buyProduct($event)">
+                    <category-product *ngFor="let pr of products" 
+                    [productProp]="pr" 
+                    (getProductDetails)="getProductDetails($event)" 
+                    (buyProduct)="buyProduct($event)">
                     </category-product>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { ProductModel } from '../../../models/product/product-model';
 import { of } from 'rxjs/observable/of';
+import { Subject } from 'rxjs/Subject';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
     templateUrl: './header.component.html',
@@ -20,11 +22,20 @@ export class HeaderComponent implements OnInit {
     public shopingCartItems$: Observable<ProductModel[]> = of([]);
     public shopingCartItems: ProductModel[] = [];
 
+    products: Observable<any>;
+
+    targetName = new Subject<any>();
+
     constructor(
         private auth: AuthService,
         private router: Router,
         private categoryService: CategoryService,
-        private basketService: CartService) {
+        private basketService: CartService,
+        private productService: ProductService) {
+
+        this.productService.debounce(this.targetName).subscribe(e => {
+            this.products = e;
+        });
 
         this.shopingCartItems$ = this.basketService.getItems();
         this.shopingCartItems$.subscribe(_ => this.shopingCartItems = _);
@@ -39,6 +50,10 @@ export class HeaderComponent implements OnInit {
             .subscribe(data => {
                 this.categories = data;
             });
+    }
+
+    searchRequest(e) {
+        this.targetName.next(e);
     }
 
     private categoryGetDetails(id) {

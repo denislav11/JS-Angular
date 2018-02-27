@@ -31,7 +31,7 @@ export class OrderService {
 
                 for (let order of res['data']) {
                     arr.push(new OrderAdminTableModel(
-                        order.name,
+                        order.customer,
                         order.address,
                         order.phone,
                         order.total

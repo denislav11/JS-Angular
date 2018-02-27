@@ -1,18 +1,18 @@
 export class OrderAdminTableModel {
-    public name: string;
+    public customer: string;
     public address: string;
-    public phone: string; 
-    public total: number; 
+    public phone: string;
+    public total: number;
 
     constructor(
-        name: string,
+        customer: string,
         address: string,
-        phone: string, 
-        total: number, 
+        phone: string,
+        total: number,
     ) {
-        this.name = name;
+        this.customer = customer;
         this.address = address;
-        this.phone = phone; 
-        this.total = total; 
+        this.phone = phone;
+        this.total = total;
     }
 }

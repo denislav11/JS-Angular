@@ -22,8 +22,7 @@
                     <form (ngSubmit)="register()" #registerForm="ngForm">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" required minlength="5" [(ngModel)]="model.name" name="name" #name="ngModel"
-                            />
+                            <input type="text" class="form-control" id="name" required minlength="5" [(ngModel)]="model.name" name="name" #name="ngModel"                            />
                         </div>
                         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
                             <div *ngIf="name.errors.required">

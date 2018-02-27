@@ -5,6 +5,10 @@ import { productUrl, imageUrl } from '../constants';
 import { CreateProductModel } from "../models/product/create-product-model";
 import { AdminProductTableModel } from "../models/admin/product/product-table-model";
 import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 import { ProductModel } from "../models/product/product-model";
 import { HotProductModel } from "../models/product/hot-product-model";
 
@@ -71,5 +75,11 @@ export class ProductService {
             formData.append("uploads[]", files[i], files[i].name);
         }
         return this.http.post(imageUrl, formData);
+    }
+
+    debounce(e) {
+        return e.debounceTime(1000)
+            .distinctUntilChanged()
+            .switchMap(x => this.getAllProducts('?title=' + x));
     }
 }

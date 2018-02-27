@@ -31,9 +31,12 @@ module.exports = app => {
 
     //Product
     app.get('/api/product', querymen.middleware({
-        q: {
+        category: {
             type: String,
             paths: ['category']
+        }, title: {
+            type: String,
+            paths: ['title']
         }
     }), controllers.product.getAllProducts);
     app.get('/api/product/:id', controllers.product.getProductById);
