@@ -3,50 +3,51 @@
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
             <h4 class="page-title">Orders</h4>
         </div>
-
     </div>
-    <!-- /row -->
-    <table id="example" class="sortable" cellspacing="0" width="100%">
-        <thead>
+    {{filterBy|json}}
+    <table class="table">
+        <thead class="thead-inverse">
             <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Order total</th>
+                <th id="orderNumber">
+                    <span (click)="sort($event)" id="orderNumber">Id</span>
+                    <br>
+                    <input 
+                    type="number" 
+                    class="form-control" 
+                    name="orderNumber" 
+                    [(ngModel)]="filterBy.orderNumber"
+                    (ngModelChange)="onChange($event)">
+                </th>
+                <th id="customer">
+                    <span (click)="sort($event)" id="customer">Customer</span>
+                    <br>
+                    <input 
+                    type="text" 
+                    class="form-control" 
+                    name="customer" 
+                    [(ngModel)]="filterBy.customer"
+                    (ngModelChange)="onChange($event)"></th>
+                <th id="address">Address</th>
+                <th id="phone">Phone</th>
+                <th id="total">Order total</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Order total</th>
-            </tr>
-        </tfoot>
         <tbody>
-            <tr *ngFor="let order of orders">
+            <tr *ngFor="let order of orders |
+             paginate: {
+                   itemsPerPage: itemsPerPage, 
+                   totalItems: totalItems,
+                   currentPage: currentPage }">
+                <td>{{order.orderNumber}}</td>
                 <td>{{order.customer}}</td>
                 <td>{{order.address}}</td>
                 <td>{{order.phone}}</td>
                 <td>${{order.total}}</td>
             </tr>
         </tbody>
-        <ul class="pagination">
-            <li>
-                <a href="#">1</a>
-            </li>
-            <li class="active">
-                <a href="#">2</a>
-            </li>
-            <li>
-                <a href="#">3</a>
-            </li>
-            <li>
-                <a href="#">4</a>
-            </li>
-            <li>
-                <a href="#">5</a>
-            </li>
-        </ul>
     </table>
+
+    <div class="has-text-centered">
+        <pagination-controls class="my-pagination" (pageChange)="pageChange($event)"></pagination-controls>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 import { components } from './index';
 import { RouterModule } from '@angular/router';
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
         CommonModule,
         FormsModule,
         RouterModule,
-        RouterModule.forChild(adminRoutes)
+        RouterModule.forChild(adminRoutes),
+        Ng2PaginationModule
     ],
     exports: [AdminComponent]
 })

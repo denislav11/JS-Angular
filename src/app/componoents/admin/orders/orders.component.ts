@@ -7,14 +7,52 @@ import { OrderService } from '../../../services/order.service';
     selector: 'admin-oders'
 })
 export class OrdersComponent implements OnInit {
-    public orders: OrderAdminTableModel[];
+    itemsPerPage: number = 10;
+    currentPage: number = 1;
+    totalItems: number;
+    sortBy: string = '-data';
+    filterBy: object = {};
 
-    constructor(private ordersService: OrderService) { }
+    orders: OrderAdminTableModel[];
+
+    constructor(private ordersService: OrderService) {
+        this.filterBy['orderNumber'] = '';
+        this.filterBy['customer'] = '';
+    }
 
     ngOnInit() {
-        this.ordersService.getAllOders()
-            .subscribe(data => {
-                this.orders = data;
-            })
+        this.getOrders();
+    }
+
+    onChange(e) {
+        this.getOrders();
+    }
+
+    getOrders() {
+        this.ordersService.getAllOders(
+            this.currentPage,
+            this.itemsPerPage,
+            this.sortBy,
+            this.filterBy)
+            .subscribe(res => {
+                this.orders = res['orders'];
+                this.totalItems = res['totalOrders'];
+            });
+    }
+
+    pageChange(e) {
+        this.currentPage = e;
+        this.getOrders();
+    }
+
+    sort(e) {
+        this.currentPage = 1;
+        let sorted = e.target.id;
+        if (this.sortBy !== sorted) {
+            this.sortBy = sorted;
+        } else {
+            this.sortBy = `-${sorted}`;
+        }
+        this.getOrders()
     }
 }

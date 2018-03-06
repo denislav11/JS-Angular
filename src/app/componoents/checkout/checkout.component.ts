@@ -16,8 +16,8 @@ import { of } from 'rxjs/observable/of';
 export class CheckoutComponent implements OnInit {
     public user: UserModel;
     public comment: string;
-    public total: number = 0; 
-	
+    public total: number = 0;
+
     public shoppingCartItems$: Observable<ProductModel[]> = of([]);
     public shoppingCartItems: ProductModel[] = [];
 
@@ -58,7 +58,6 @@ export class CheckoutComponent implements OnInit {
                 return pr._id
             })
         );
-        this.basketService.emptyCart();
         this.orderService.purchase(model);
     }
 }

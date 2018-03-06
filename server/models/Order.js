@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.String,
         required: true
     },
-    data: { type: mongoose.Schema.Types.Date, default: Date.now, unique: true },
+    data: { type: mongoose.Schema.Types.Date, default: Date.now },
     email: {
         type: mongoose.Schema.Types.String,
         minlength: [6, "Email must be at least 5 symbols."],
@@ -30,7 +30,10 @@ const orderSchema = new mongoose.Schema({
     },
     products: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Product'
-    }]
+    }],
+    orderNumber: {
+        type: mongoose.Schema.Types.Number
+    }
 });
 
 const Order = mongoose.model('Order', orderSchema);

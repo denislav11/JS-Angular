@@ -46,7 +46,16 @@ module.exports = app => {
 
     //Orders
     app.post('/api/order', controllers.order.createOrder);
-    app.get('/api/order', controllers.order.getAllOrders);
+    app.get('/api/order', querymen.middleware({
+        orderNumber: {
+            type: Number,
+            paths: ['orderNumber']
+        },
+        customer: {
+            type: RegExp,
+            paths: ['customer']
+        }
+    }), controllers.order.getAllOrders);
 
     //Image
     app.post(
