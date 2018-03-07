@@ -11,14 +11,14 @@ export class OrdersComponent implements OnInit {
     currentPage: number = 1;
     totalItems: number;
     sortBy: string = '-data';
-    filterBy = {};
+    filterBy = {
+        'orderNumber': null,
+        'customer': ''
+    };
 
     orders: OrderAdminTableModel[];
 
-    constructor(private ordersService: OrderService) {
-        this.filterBy['orderNumber'] = '';
-        this.filterBy['customer'] = '';
-    }
+    constructor(private ordersService: OrderService) { }
 
     ngOnInit() {
         this.getOrders();
