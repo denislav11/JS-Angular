@@ -11,7 +11,7 @@ export class OrdersComponent implements OnInit {
     currentPage: number = 1;
     totalItems: number;
     sortBy: string = '-data';
-    filterBy: object = {};
+    filterBy = {};
 
     orders: OrderAdminTableModel[];
 
