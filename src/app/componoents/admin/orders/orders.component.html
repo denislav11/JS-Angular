@@ -4,41 +4,48 @@
             <h4 class="page-title">Orders</h4>
         </div>
     </div>
-    {{filterBy|json}}
+
     <table class="table">
         <thead class="thead-inverse">
-            <tr>
-                <th id="orderNumber">
-                    <span (click)="sort($event)" id="orderNumber">Id</span>
-                    <br>
-                    <input 
-                    type="number" 
-                    class="form-control" 
-                    name="orderNumber" 
-                    [(ngModel)]="filterBy.orderNumber"
-                    (ngModelChange)="onChange($event)">
+            <tr (click)="sort($event)">
+                <th id="checkAll">
+                    <input id="checkAll" type="checkbox">
                 </th>
-                <th id="customer">
-                    <span (click)="sort($event)" id="customer">Customer</span>
-                    <br>
-                    <input 
-                    type="text" 
-                    class="form-control" 
-                    name="customer" 
-                    [(ngModel)]="filterBy.customer"
-                    (ngModelChange)="onChange($event)"></th>
+                <th id="orderNumber">Id</th>
+                <th id="customer">Customer</th>
                 <th id="address">Address</th>
                 <th id="phone">Phone</th>
-                <th id="total">Order total</th>
+                <th id="total">Total</th>
             </tr>
         </thead>
-        
+        <tr>
+            <th>
+            </th>
+            <th>
+                <input type="number" class="form-control" name="orderNumber" [(ngModel)]="filterBy.orderNumber" (ngModelChange)="onChange($event)">
+            </th>
+            <th>
+                <input type="text" class="form-control" name="customer" [(ngModel)]="filterBy.customer" (ngModelChange)="onChange($event)">
+            </th>
+            <th>
+                <input type="text" class="form-control" name="address" [(ngModel)]="filterBy.address" (ngModelChange)="onChange($event)">
+            </th>
+            <th>
+                <input type="text" class="form-control" name="phone" [(ngModel)]="filterBy.phone" (ngModelChange)="onChange($event)">
+            </th>
+            <th>
+                <input type="number" class="form-control" name="total" [(ngModel)]="filterBy.total" (ngModelChange)="onChange($event)">
+            </th>
+        </tr>
         <tbody>
             <tr *ngFor="let order of orders |
              paginate: {
                    itemsPerPage: itemsPerPage, 
                    totalItems: totalItems,
                    currentPage: currentPage }">
+                <td>
+                    <input type="checkbox">
+                </td>
                 <td>{{order.orderNumber}}</td>
                 <td>{{order.customer}}</td>
                 <td>{{order.address}}</td>

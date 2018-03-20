@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { HotProductModel } from '../../models/product/hot-product-model';
 
+
 @Component({
     templateUrl: './home.component.html',
 })
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
 
     constructor(
         private service: ProductService
-    ) { }
+    ) {
+    }
 
     ngOnInit() {
         this.service.getHotProducts()

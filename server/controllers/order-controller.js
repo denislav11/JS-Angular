@@ -28,7 +28,7 @@ module.exports = {
     getAllOrders: async (req, res) => {
         try {
             let query = req.querymen;
-            console.log(query);
+
             let totalOrders = await Order.count({})
             let data = await Order.find(query.query, query.select, query.cursor);
 

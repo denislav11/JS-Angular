@@ -50,10 +50,18 @@ module.exports = app => {
         orderNumber: {
             type: Number,
             paths: ['orderNumber']
-        },
-        customer: {
+        }, customer: {
             type: RegExp,
             paths: ['customer']
+        }, address: {
+            type: RegExp,
+            paths: ['address']
+        }, total: {
+            type: Number,
+            paths: ['total']
+        }, phone: {
+            type: RegExp,
+            paths: ['phone']
         }
     }), controllers.order.getAllOrders);
 
