@@ -5,6 +5,7 @@ import { ProductService } from "../../../../services/product.service";
 import { Router } from "@angular/router";
 import { CategoryModel } from "../../../../models/category/category.model";
 import { ToastsManager } from "ng2-toastr/src/toast-manager";
+import { imageUrl } from '../../../../constants'
 
 @Component({
     templateUrl: './product.create.component.html'
@@ -40,7 +41,7 @@ export class AdminCreateProductComponent implements OnInit {
 
     upload(fileInput) {
         this.filesToUpload = <Array<File>>fileInput.target.files;
-        this.makeFileRequest("http://localhost:3000/upload",
+        this.makeFileRequest(imageUrl,
             [],
             this.filesToUpload).then((res) => {
                 this.toastr.success(res['message']);
